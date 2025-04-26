@@ -3,8 +3,8 @@
 #include <SDL3/SDL_main.h>
 
 // Будем использовать этот renderer для рисования в этом окне каждого кадра
-static SDL_Window* window = NULL;
-static SDL_Renderer* renderer = NULL;
+static SDL_Window* window = nullptr;
+static SDL_Renderer* renderer = nullptr;
 
 // Эта функция отрабатывает при запуске, один раз
 SDL_AppResult SDL_AppInit(void** appstate, int argc, char* argv[])
