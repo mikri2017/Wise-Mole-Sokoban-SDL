@@ -1,10 +1,14 @@
 #define SDL_MAIN_USE_CALLBACKS 1  // Использовать обратные вызовы, вместо main()
 #include <SDL3/SDL.h>
 #include <SDL3/SDL_main.h>
+#include "SDLGame.h"
 
 // Будем использовать этот renderer для рисования в этом окне каждого кадра
 static SDL_Window* window = nullptr;
 static SDL_Renderer* renderer = nullptr;
+
+// Обертка для работы в стиле ООП
+static SDLGame* game = nullptr;
 
 // Эта функция отрабатывает при запуске, один раз
 SDL_AppResult SDL_AppInit(void** appstate, int argc, char* argv[])
@@ -21,6 +25,9 @@ SDL_AppResult SDL_AppInit(void** appstate, int argc, char* argv[])
         return SDL_APP_FAILURE;
     }
 
+    // Создаем объект игры
+    game = new SDLGame(window, renderer);
+
     return SDL_APP_CONTINUE; // продолжим выполнение программы
 }
 
@@ -31,17 +38,20 @@ SDL_AppResult SDL_AppEvent(void* appstate, SDL_Event* event)
         return SDL_APP_SUCCESS; // завершение программы, сообщение ОС об успехе
     }
 
-    return SDL_APP_CONTINUE; // продолжим выполнение программы
+    return game->proc_event(appstate, event);
 }
 
 // Эта функция запускается каждый кадр - сердце программы
 SDL_AppResult SDL_AppIterate(void* appstate)
 {
-    return SDL_APP_CONTINUE; // продолжим выполнение программы
+    return game->app_iter(appstate);
 }
 
 // Эта функция запускается при завершении программы
 void SDL_AppQuit(void* appstate, SDL_AppResult result)
 {
+    // Убираем объект игры
+    delete game;
+
     // SDL освободит окно, рендер для нас
 }
