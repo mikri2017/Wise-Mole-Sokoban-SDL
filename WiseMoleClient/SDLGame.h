@@ -7,6 +7,7 @@ class SDLGame
 private:
 	SDL_Window* window {nullptr};
 	SDL_Renderer* renderer {nullptr};
+	SDL_FRect fr;
 public:
 	SDLGame(SDL_Window* w, SDL_Renderer* r);
 
