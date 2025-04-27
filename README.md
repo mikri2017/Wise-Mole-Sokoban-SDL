@@ -4,9 +4,27 @@
 
 Проект по мотивам игры "Мудрый крот" для Роботландия-98.
 
-Проект кросс-платформенный, под Windows и Linux.
+Проект кросс-платформенный, под Windows и Linux на SDL3 (на момент разработки,
+используется версия 3.2.10).
 
-Версия под ОС Windows разрабатывается в Visual Studio 2022.
+Версия под ОС Windows разрабатывается в Visual Studio 2022 (Windows 11).
+
+Версия под ОС Linux разрабатывается в Visual Studio Code (Debian Testing [13]).
+
+## Сборка проекта
+### Сервер
+* Windows
+* Linux
+
+### Клиент
+* Windows
+  * Скачать SDL3 под Visual Studio (SDL3-devel-3.2.10-VC.zip), распаковать в папку:
+	```
+	C:\Dev\SDL\SDL3
+	```
+  * Открыть файл решения ```wise-mole-sokoban-sdl.sln``` и собрать/запустить проект
+(необходимые настройки уже прописаны в свойствах проекта)
+* Linux
 
 ## Роли:
 * Сервер - хранит уровни игры, позволяет скачивать их по сети другими игроками,
@@ -19,5 +37,4 @@
 ### Сервер
 * [mariadb-server](https://mariadb.org/download/?t=repo-config&d=Debian+12+%22Bookworm%22&v=11.4&r_m=truenetwork)
 ### Клиент
-* CMake
 * [SDL3](https://github.com/libsdl-org/SDL/releases)
