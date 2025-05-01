@@ -6,7 +6,7 @@ SDLGame::SDLGame(SDL_Window* w, SDL_Renderer* r)
 	window = w;
 	renderer = r;
 
-	// Получить и показать доступные режимы монитора
+	// РџРѕР»СѓС‡РёС‚СЊ Рё РїРѕРєР°Р·Р°С‚СЊ РґРѕСЃС‚СѓРїРЅС‹Рµ СЂРµР¶РёРјС‹ РјРѕРЅРёС‚РѕСЂР°
 	/*SDL_DisplayMode** dm;
 
 	dm = SDL_GetFullscreenDisplayModes(SDL_GetPrimaryDisplay(), nullptr);
@@ -19,19 +19,19 @@ SDLGame::SDLGame(SDL_Window* w, SDL_Renderer* r)
 			<< (*ptr)->pixel_density << " - " << (*ptr)->refresh_rate << std::endl;
 	}*/
 
-	// Как пример, установил конкретный режим
+	// РљР°Рє РїСЂРёРјРµСЂ, СѓСЃС‚Р°РЅРѕРІРёР» РєРѕРЅРєСЂРµС‚РЅС‹Р№ СЂРµР¶РёРј
 	SDL_DisplayMode dm_test;
 	dm_test.displayID = SDL_GetPrimaryDisplay();
 	dm_test.format = SDL_PIXELFORMAT_XRGB8888;
 	dm_test.w = 1024;
 	dm_test.h = 768;
-	dm_test.pixel_density = 1;
+	dm_test.pixel_density = 1; 
 	dm_test.refresh_rate = 60;
 
-	// Устанавливаем параметры полноэкранного режима
+	// РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј РїР°СЂР°РјРµС‚СЂС‹ РїРѕР»РЅРѕСЌРєСЂР°РЅРЅРѕРіРѕ СЂРµР¶РёРјР°
 	SDL_SetWindowFullscreenMode(window, &dm_test);
 
-	// Устанавливаем заданный, по умолчанию, режим (полный экран/окно)
+	// РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј Р·Р°РґР°РЅРЅС‹Р№, РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ, СЂРµР¶РёРј (РїРѕР»РЅС‹Р№ СЌРєСЂР°РЅ/РѕРєРЅРѕ)
 	SDL_SetWindowFullscreen(window, fullscren);
 }
 
@@ -80,7 +80,7 @@ SDL_AppResult SDLGame::proc_event(void* appstate, SDL_Event* event)
 		}
 	}
 
-	return SDL_APP_CONTINUE; // продолжим выполнение программы
+	return SDL_APP_CONTINUE; // РїСЂРѕРґРѕР»Р¶РёРј РІС‹РїРѕР»РЅРµРЅРёРµ РїСЂРѕРіСЂР°РјРјС‹
 }
 
 SDL_AppResult SDLGame::app_iter(void* appstate)
@@ -93,5 +93,5 @@ SDL_AppResult SDLGame::app_iter(void* appstate)
 
 	SDL_RenderPresent(renderer);
 
-	return SDL_APP_CONTINUE; // продолжим выполнение программы
+	return SDL_APP_CONTINUE; // РїСЂРѕРґРѕР»Р¶РёРј РІС‹РїРѕР»РЅРµРЅРёРµ РїСЂРѕРіСЂР°РјРјС‹
 }

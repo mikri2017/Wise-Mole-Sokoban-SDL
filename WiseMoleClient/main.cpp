@@ -1,16 +1,16 @@
-#define SDL_MAIN_USE_CALLBACKS 1  // Использовать обратные вызовы, вместо main()
+#define SDL_MAIN_USE_CALLBACKS 1  // РСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РѕР±СЂР°С‚РЅС‹Рµ РІС‹Р·РѕРІС‹, РІРјРµСЃС‚Рѕ main()
 #include <SDL3/SDL.h>
 #include <SDL3/SDL_main.h>
 #include "SDLGame.h"
 
-// Будем использовать этот renderer для рисования в этом окне каждого кадра
+// Р‘СѓРґРµРј РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ СЌС‚РѕС‚ renderer РґР»СЏ СЂРёСЃРѕРІР°РЅРёСЏ РІ СЌС‚РѕРј РѕРєРЅРµ РєР°Р¶РґРѕРіРѕ РєР°РґСЂР°
 static SDL_Window* window {nullptr};
 static SDL_Renderer* renderer {nullptr};
 
-// Обертка для работы в стиле ООП
+// РћР±РµСЂС‚РєР° РґР»СЏ СЂР°Р±РѕС‚С‹ РІ СЃС‚РёР»Рµ РћРћРџ
 static SDLGame* game {nullptr};
 
-// Эта функция отрабатывает при запуске, один раз
+// Р­С‚Р° С„СѓРЅРєС†РёСЏ РѕС‚СЂР°Р±Р°С‚С‹РІР°РµС‚ РїСЂРё Р·Р°РїСѓСЃРєРµ, РѕРґРёРЅ СЂР°Р·
 SDL_AppResult SDL_AppInit(void** appstate, int argc, char* argv[])
 {
     SDL_SetAppMetadata("WiseMole Sokoban", "0.1", "com.mikri.GAMES");
@@ -25,33 +25,33 @@ SDL_AppResult SDL_AppInit(void** appstate, int argc, char* argv[])
         return SDL_APP_FAILURE;
     }
 
-    // Создаем объект игры
+    // РЎРѕР·РґР°РµРј РѕР±СЉРµРєС‚ РёРіСЂС‹
     game = new SDLGame(window, renderer);
 
-    return SDL_APP_CONTINUE; // продолжим выполнение программы
+    return SDL_APP_CONTINUE; // РїСЂРѕРґРѕР»Р¶РёРј РІС‹РїРѕР»РЅРµРЅРёРµ РїСЂРѕРіСЂР°РјРјС‹
 }
 
-// Эта функция отрабатывает при новом событии (ввод мыши, нажатие клавиши, и т.д...
+// Р­С‚Р° С„СѓРЅРєС†РёСЏ РѕС‚СЂР°Р±Р°С‚С‹РІР°РµС‚ РїСЂРё РЅРѕРІРѕРј СЃРѕР±С‹С‚РёРё (РІРІРѕРґ РјС‹С€Рё, РЅР°Р¶Р°С‚РёРµ РєР»Р°РІРёС€Рё, Рё С‚.Рґ...
 SDL_AppResult SDL_AppEvent(void* appstate, SDL_Event* event)
 {
     if (event->type == SDL_EVENT_QUIT) {
-        return SDL_APP_SUCCESS; // завершение программы, сообщение ОС об успехе
+        return SDL_APP_SUCCESS; // Р·Р°РІРµСЂС€РµРЅРёРµ РїСЂРѕРіСЂР°РјРјС‹, СЃРѕРѕР±С‰РµРЅРёРµ РћРЎ РѕР± СѓСЃРїРµС…Рµ
     }
 
     return game->proc_event(appstate, event);
 }
 
-// Эта функция запускается каждый кадр - сердце программы
+// Р­С‚Р° С„СѓРЅРєС†РёСЏ Р·Р°РїСѓСЃРєР°РµС‚СЃСЏ РєР°Р¶РґС‹Р№ РєР°РґСЂ - СЃРµСЂРґС†Рµ РїСЂРѕРіСЂР°РјРјС‹
 SDL_AppResult SDL_AppIterate(void* appstate)
 {
     return game->app_iter(appstate);
 }
 
-// Эта функция запускается при завершении программы
+// Р­С‚Р° С„СѓРЅРєС†РёСЏ Р·Р°РїСѓСЃРєР°РµС‚СЃСЏ РїСЂРё Р·Р°РІРµСЂС€РµРЅРёРё РїСЂРѕРіСЂР°РјРјС‹
 void SDL_AppQuit(void* appstate, SDL_AppResult result)
 {
-    // Убираем объект игры
+    // РЈР±РёСЂР°РµРј РѕР±СЉРµРєС‚ РёРіСЂС‹
     delete game;
 
-    // SDL освободит окно, рендер для нас
+    // SDL РѕСЃРІРѕР±РѕРґРёС‚ РѕРєРЅРѕ, СЂРµРЅРґРµСЂ РґР»СЏ РЅР°СЃ
 }
