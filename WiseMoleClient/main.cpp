@@ -4,11 +4,11 @@
 #include "SDLGame.h"
 
 // Будем использовать этот renderer для рисования в этом окне каждого кадра
-static SDL_Window* window = nullptr;
-static SDL_Renderer* renderer = nullptr;
+static SDL_Window* window {nullptr};
+static SDL_Renderer* renderer {nullptr};
 
 // Обертка для работы в стиле ООП
-static SDLGame* game = nullptr;
+static SDLGame* game {nullptr};
 
 // Эта функция отрабатывает при запуске, один раз
 SDL_AppResult SDL_AppInit(void** appstate, int argc, char* argv[])

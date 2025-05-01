@@ -7,7 +7,8 @@ class SDLGame
 private:
 	SDL_Window* window {nullptr};
 	SDL_Renderer* renderer {nullptr};
-	SDL_FRect fr;
+	SDL_FRect fr {0, 0, 50, 50};
+	bool fullscren = true;
 public:
 	SDLGame(SDL_Window* w, SDL_Renderer* r);
 
