@@ -58,6 +58,7 @@ std::vector<GameVideoModeStr> VideoModeMgr::get_available_modes()
 			+ std::to_string(v_mode.refresh_rate) + " Hz)";
 
 		gvm_str.push_back(m_str);
+		id++;
 	}
 
 	return gvm_str;
