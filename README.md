@@ -26,18 +26,16 @@
 (необходимые настройки уже прописаны в свойствах проекта)
 * Linux
   * Установить средства разработки (нужен g++, make)
-  * Установить библиотеку SDL3 (пример под Debian Testing [13])
-    ```
-	sudo apt install libsdl3-dev
-	```
+  * Установить библиотеку SDL3 (пример для Debian, требуется подключить sid ветку для mixer)
+    ```sudo apt install libsdl3-dev libsdl3-image-dev libsdl3-mixer-dev libsdl3-net-dev libsdl3-ttf-dev```
   * Открыть папку в Visual Studio Code
   * Нажать комбинацию клавиш Ctrl + Shift + B
   * Выбрать режим сборки из списка
-    ```
-    Client Linux g++ Debug
-    Client Linux g++ Release
-    Client Linux g++ Clean
-    ```
+  * Через CMake:
+    * `mkdir WiseMoleClient/build && cd WiseMoleClient/build`
+    * `cmake ..`
+    * `cmake --build .`
+    * `cmake --install .`
 
 ## Роли:
 * Сервер - хранит уровни игры, позволяет скачивать их по сети другими игроками,
