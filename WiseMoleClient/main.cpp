@@ -28,14 +28,14 @@ SDL_AppResult SDL_AppInit(void** appstate, int argc, char* argv[])
     // Создаем объект игры
     game = new SDLGame(window, renderer);
 
-    return SDL_APP_CONTINUE; // продолжим выполнение программы
+    return SDL_APP_CONTINUE; // Продолжим выполнение программы
 }
 
 // Эта функция отрабатывает при новом событии (ввод мыши, нажатие клавиши, и т.д...
 SDL_AppResult SDL_AppEvent(void* appstate, SDL_Event* event)
 {
     if (event->type == SDL_EVENT_QUIT) {
-        return SDL_APP_SUCCESS; // завершение программы, сообщение ОС об успехе
+        return SDL_APP_SUCCESS; // Завершение программы, сообщение ОС об успехе
     }
 
     return game->proc_event(appstate, event);

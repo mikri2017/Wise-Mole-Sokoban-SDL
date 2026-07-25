@@ -7,7 +7,7 @@ class SDLGame
 {
 private:
 	SDL_Window* window {nullptr};
-	int win_w, win_h; // размеры окна
+	int win_w, win_h; // Размеры окна
 	SDL_Renderer* renderer {nullptr};
 	VideoModeMgr vm_mgr;
 	int active_vm {0};

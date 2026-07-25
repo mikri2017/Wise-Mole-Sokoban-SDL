@@ -61,7 +61,7 @@ SDL_AppResult SDLGame::proc_event(void* appstate, SDL_Event* event)
 		}
 	}
 
-	return SDL_APP_CONTINUE; // продолжим выполнение программы
+	return SDL_APP_CONTINUE; // Продолжим выполнение программы
 }
 
 SDL_AppResult SDLGame::app_iter(void* appstate)
@@ -74,5 +74,5 @@ SDL_AppResult SDLGame::app_iter(void* appstate)
 
 	SDL_RenderPresent(renderer);
 
-	return SDL_APP_CONTINUE; // продолжим выполнение программы
+	return SDL_APP_CONTINUE; // Продолжим выполнение программы
 }

@@ -7,7 +7,7 @@
 class VideoModeMgr
 {
 private:
-	float refresh_rate; // текущая частота монитора
+	float refresh_rate; // Текущая частота монитора
 	SDL_DisplayMode* dm{ nullptr }; // Подобранный режим работы
 	bool fullscreen = false; // Активен ли полноэкранный режим
 public:
