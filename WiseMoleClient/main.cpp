@@ -20,7 +20,7 @@ SDL_AppResult SDL_AppInit(void** appstate, int argc, char* argv[])
         return SDL_APP_FAILURE;
     }
 
-    if (!SDL_CreateWindowAndRenderer("WiseMole Sokoban", 1024, 768, 0, &window, &renderer)) {
+    if (!SDL_CreateWindowAndRenderer("WiseMole Sokoban", 1366, 768, 0, &window, &renderer)) {
         SDL_Log("Couldn't create window/renderer: %s", SDL_GetError());
         return SDL_APP_FAILURE;
     }
