@@ -30,26 +30,6 @@ SDL_AppResult SDLGame::proc_event(void* appstate, SDL_Event* event)
 			return SDL_APP_SUCCESS;
 		}
 
-		if (event->key.scancode == SDL_SCANCODE_RIGHT)
-		{
-			fr.x += 10;
-		}
-
-		if (event->key.scancode == SDL_SCANCODE_LEFT)
-		{
-			fr.x -= 10;
-		}
-
-		if (event->key.scancode == SDL_SCANCODE_UP)
-		{
-			fr.y -= 10;
-		}
-
-		if (event->key.scancode == SDL_SCANCODE_DOWN)
-		{
-			fr.y += 10;
-		}
-
 		if (event->key.scancode == SDL_SCANCODE_F)
 		{
 			if (fullscren == true)
@@ -58,6 +38,42 @@ SDL_AppResult SDLGame::proc_event(void* appstate, SDL_Event* event)
 				fullscren = true;
 
 			SDL_SetWindowFullscreen(window, fullscren);
+		}
+
+		if (event->key.scancode == SDL_SCANCODE_RIGHT)
+		{
+			fr.x += step;
+			if (fr.x + fr.w > win_w)
+			{
+				fr.x = win_w - fr.w;
+			}
+		}
+
+		if (event->key.scancode == SDL_SCANCODE_LEFT)
+		{
+			fr.x -= step;
+			if (fr.x < 0)
+			{
+				fr.x = 0;
+			}
+		}
+
+		if (event->key.scancode == SDL_SCANCODE_UP)
+		{
+			fr.y -= step;
+			if (fr.y < 0)
+			{
+				fr.y = 0;
+			}
+		}
+
+		if (event->key.scancode == SDL_SCANCODE_DOWN)
+		{
+			fr.y += step;
+			if (fr.y + fr.h > win_h)
+			{
+				fr.y = win_h - fr.h;
+			}
 		}
 	}
 

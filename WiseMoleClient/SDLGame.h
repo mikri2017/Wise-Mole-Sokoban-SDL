@@ -14,6 +14,8 @@ private:
 
 	SDL_FRect fr {0, 0, 50, 50};
 	bool fullscren {true};
+
+	const int step = 10; // Длина шага персонажа
 public:
 	SDLGame(SDL_Window* w, SDL_Renderer* r);
 
