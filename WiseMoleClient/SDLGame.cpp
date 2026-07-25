@@ -2,14 +2,18 @@
 #include "SDLGame.h"
 #include "VideoModeMgr.h"
 
-SDLGame::SDLGame(SDL_Window* w, SDL_Renderer* r)
+SDLGame::SDLGame(SDL_Window* win, SDL_Renderer* r)
 {
-	window = w;
+	window = win;
 	renderer = r;
 
-	// Получим доступные режимы работы монитора
-	vm_mgr.reload_modes();
-	vvm_str = vm_mgr.get_available_modes();
+	// Получим размеры текущего окна
+	SDL_GetWindowSize(window, &win_w, &win_h);
+
+	// Подбираем, среди возможных, подходящий
+	// полноэкранный режим
+	vm_mgr.define_video_mode(win_w, win_h);
+	vm_mgr.set_video_mode(window);
 }
 
 SDLGame::~SDLGame()
@@ -44,35 +48,6 @@ SDL_AppResult SDLGame::proc_event(void* appstate, SDL_Event* event)
 		if (event->key.scancode == SDL_SCANCODE_DOWN)
 		{
 			fr.y += 10;
-		}
-
-		if (event->key.scancode == SDL_SCANCODE_I)
-		{
-			// Предыдущий режим работы
-			active_vm--;
-			if (active_vm < 1)
-				active_vm = 1;
-
-			std::cout << "Selected mode (" << vvm_str.size() << "): " << vvm_str[active_vm].mode_name << std::endl;
-		}
-
-		if (event->key.scancode == SDL_SCANCODE_O)
-		{
-			// Следующий режим работы
-			active_vm++;
-			if (active_vm >= vvm_str.size())
-				active_vm = vvm_str.size() - 1;
-
-			std::cout << "Selected mode (" << vvm_str.size() << "): " << vvm_str[active_vm].mode_name << std::endl;
-		}
-
-		if (event->key.scancode == SDL_SCANCODE_RETURN)
-		{
-			// Перейти в этот режим
-			if (!vm_mgr.set_video_mode(window, active_vm))
-				std::cout << "Unavailable mode!" << std::endl;
-			else
-				std::cout << "Mode is seted!" << std::endl;
 		}
 
 		if (event->key.scancode == SDL_SCANCODE_F)

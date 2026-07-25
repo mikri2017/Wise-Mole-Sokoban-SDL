@@ -3,15 +3,17 @@
 
 VideoModeMgr::VideoModeMgr()
 {
-
+	// Получим герцовку текущего режима монитора
+	const SDL_DisplayMode* dm_cur_sys;
+	dm_cur_sys = SDL_GetCurrentDisplayMode(SDL_GetPrimaryDisplay());
+	refresh_rate = dm_cur_sys->refresh_rate;
 }
 
 VideoModeMgr::~VideoModeMgr()
 {
-
 }
 
-bool VideoModeMgr::reload_modes()
+bool VideoModeMgr::define_video_mode(int w, int h)
 {
 	// Получаем доступные режимы монитора
 	SDL_DisplayMode** dms;
@@ -23,19 +25,18 @@ bool VideoModeMgr::reload_modes()
 		return false;
 	}
 
-	// Обходим режимы и сохраняем в контейнер vector
-	SDL_DisplayMode dm;
-
+	// Обходим режимы, подбираем нужный
 	SDL_DisplayMode** ptr;
-	for (ptr = dms; *ptr != nullptr; ptr++) {
-		// Заполняем временный режим
-		dm.format = (*ptr)->format;
-		dm.w = (*ptr)->w;
-		dm.h = (*ptr)->h;
-		dm.pixel_density = (*ptr)->pixel_density;
-		dm.refresh_rate = (*ptr)->refresh_rate;
-
-		v_modes.push_back(dm);
+	for (ptr = dms; *ptr != nullptr; ptr++)
+	{
+		if ((*ptr)->refresh_rate == refresh_rate)
+		{
+			// Частота подошла, выбираем разрешение
+			if ((*ptr)->w == w && (*ptr)->h == h)
+			{
+				dm = (*ptr);
+			}
+		}
 	}
 
 	SDL_free(dms);
@@ -43,38 +44,12 @@ bool VideoModeMgr::reload_modes()
 	return true;
 }
 
-std::vector<GameVideoModeStr> VideoModeMgr::get_available_modes()
+bool VideoModeMgr::set_video_mode(SDL_Window* w)
 {
-	GameVideoModeStr m_str;
-
-	std::vector<GameVideoModeStr> gvm_str;
-
-	int id = 0;
-	for (auto const& v_mode : v_modes)
-	{
-		m_str.id = id;
-		m_str.mode_name = std::to_string(v_mode.w) + " x "
-			+ std::to_string(v_mode.h) + " ("
-			+ std::to_string(v_mode.refresh_rate) + " Hz)";
-
-		gvm_str.push_back(m_str);
-		id++;
-	}
-
-	return gvm_str;
-}
-
-bool VideoModeMgr::set_video_mode(SDL_Window* w, int id)
-{
-	if (id < v_modes.size())
+	if (dm)
 	{
 		// Устанавливаем выбранный режим работы экрана
-		SDL_DisplayMode dm = v_modes[id];
-
-		// Назначаем основной экран
-		dm.displayID = SDL_GetPrimaryDisplay();
-
-		SDL_SetWindowFullscreenMode(w, &dm);
+		SDL_SetWindowFullscreenMode(w, dm);
 	}
 	else
 		return false;

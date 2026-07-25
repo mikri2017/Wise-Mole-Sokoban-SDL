@@ -7,10 +7,10 @@ class SDLGame
 {
 private:
 	SDL_Window* window {nullptr};
+	int win_w, win_h; // размеры окна
 	SDL_Renderer* renderer {nullptr};
 	VideoModeMgr vm_mgr;
 	int active_vm {0};
-	std::vector<GameVideoModeStr> vvm_str;
 
 	SDL_FRect fr {0, 0, 50, 50};
 	bool fullscren {true};
