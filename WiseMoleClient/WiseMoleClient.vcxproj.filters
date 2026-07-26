@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Исходные файлы\game_objects">
+      <UniqueIdentifier>{00074c71-08db-4dfa-a753-4c5865af15ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\game_objects">
+      <UniqueIdentifier>{008eb3b7-3d69-4d32-99da-9d03bf8ca29c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -24,26 +30,26 @@
     <ClCompile Include="VideoModeMgr.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="game_objects\GameObject.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="game_objects\MainHero.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="game_objects\CollisionCaps.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="game_objects\WallBlock.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="game_objects\BoxPlace.cpp">
+    <ClCompile Include="SoundMgr.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="game_objects\Box.cpp">
-      <Filter>Исходные файлы</Filter>
+      <Filter>Исходные файлы\game_objects</Filter>
     </ClCompile>
-    <ClCompile Include="SoundMgr.cpp">
-      <Filter>Исходные файлы</Filter>
+    <ClCompile Include="game_objects\BoxPlace.cpp">
+      <Filter>Исходные файлы\game_objects</Filter>
+    </ClCompile>
+    <ClCompile Include="game_objects\CollisionCaps.cpp">
+      <Filter>Исходные файлы\game_objects</Filter>
+    </ClCompile>
+    <ClCompile Include="game_objects\GameObject.cpp">
+      <Filter>Исходные файлы\game_objects</Filter>
+    </ClCompile>
+    <ClCompile Include="game_objects\MainHero.cpp">
+      <Filter>Исходные файлы\game_objects</Filter>
+    </ClCompile>
+    <ClCompile Include="game_objects\WallBlock.cpp">
+      <Filter>Исходные файлы\game_objects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -53,26 +59,26 @@
     <ClInclude Include="SDLGame.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="game_objects\GameObject.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="game_objects\MainHero.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="game_objects\CollisionCaps.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="game_objects\WallBlock.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="game_objects\BoxPlace.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="game_objects\Box.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="SoundMgr.h">
       <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game_objects\Box.h">
+      <Filter>Файлы заголовков\game_objects</Filter>
+    </ClInclude>
+    <ClInclude Include="game_objects\BoxPlace.h">
+      <Filter>Файлы заголовков\game_objects</Filter>
+    </ClInclude>
+    <ClInclude Include="game_objects\CollisionCaps.h">
+      <Filter>Файлы заголовков\game_objects</Filter>
+    </ClInclude>
+    <ClInclude Include="game_objects\GameObject.h">
+      <Filter>Файлы заголовков\game_objects</Filter>
+    </ClInclude>
+    <ClInclude Include="game_objects\MainHero.h">
+      <Filter>Файлы заголовков\game_objects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
