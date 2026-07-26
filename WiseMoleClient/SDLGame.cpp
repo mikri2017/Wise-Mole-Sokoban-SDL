@@ -1,5 +1,6 @@
 #include "SDLGame.h"
 #include "VideoModeMgr.h"
+#include <iostream>
 
 SDLGame::SDLGame(SDL_Window* win, SDL_Renderer* r)
 {
@@ -138,6 +139,9 @@ SDL_AppResult SDLGame::proc_event(void* appstate, SDL_Event* event)
 				check_collisions_boxes(hero, 0, step))
 				hero.move(0, -step); // Вышли за пределы, откатываем
 		}
+
+		if (check_for_win())
+			std::cout << "POBEDA!!!" << std::endl;
 	}
 
 	return SDL_APP_CONTINUE; // Продолжим выполнение программы
@@ -231,4 +235,27 @@ bool SDLGame::check_collisions_boxes(GameObject game_o, float diff_x, float diff
 	}
 
 	return false;
+}
+
+bool SDLGame::check_for_win()
+{
+	// Проверим, что все ящики на своих местах
+	for (auto& box : boxes)
+	{
+		bool in_place = false;
+		for (auto& b_place : b_places)
+		{
+			if (box.check_inside(&b_place))
+			{
+				in_place = true;
+				break;
+			}
+		}
+
+		if (!in_place)
+			return false; // Ящик не на месте
+	}
+
+	// Все ящики на своих местах
+	return true;
 }
