@@ -30,7 +30,7 @@ SDLGame::SDLGame(SDL_Window* win, SDL_Renderer* r)
 
 	// Накидаем стены
 	float block_size = 50;
-	SDL_FPoint p[10]{
+	SDL_FPoint pw[10]{
 		{area.x + block_size * 2, area.y + block_size},
 		{area.x + block_size * 3, area.y + block_size},
 		{area.x + block_size * 5, area.y + block_size},
@@ -46,8 +46,22 @@ SDLGame::SDLGame(SDL_Window* win, SDL_Renderer* r)
 	for (auto i = 0; i < 10; i++)
 	{
 		WallBlock wb;
-		wb.set_position(p[i].x, p[i].y);
+		wb.set_position(pw[i].x, pw[i].y);
 		w_blocks.push_back(wb);
+	}
+
+	// Добавим места под ящики
+	SDL_FPoint pbp[3]{
+		{area.x + block_size * 2, area.y + block_size * 5},
+		{area.x + block_size * 2, area.y + block_size * 6},
+		{area.x + block_size * 4, area.y + block_size * 5}
+	};
+
+	for (auto i = 0; i < 3; i++)
+	{
+		BoxPlace bp;
+		bp.set_position(pbp[i].x, pbp[i].y);
+		b_places.push_back(bp);
 	}
 }
 
@@ -112,11 +126,19 @@ SDL_AppResult SDLGame::app_iter(void* appstate)
 	SDL_SetRenderDrawColor(renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
 	SDL_RenderClear(renderer);
 
-	hero.render(renderer);
 	for (auto& w_block : w_blocks)
 	{
 		w_block.render(renderer);
 	}
+
+	for (auto& b_place : b_places)
+	{
+		b_place.render(renderer);
+	}
+
+	// Персонаж рисуется последним,
+	// чтобы не закрасило
+	hero.render(renderer);
 
 	SDL_RenderPresent(renderer);
 

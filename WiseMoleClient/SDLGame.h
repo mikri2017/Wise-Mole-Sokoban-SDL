@@ -6,6 +6,7 @@
 #include "game_objects/CollisionCaps.h"
 #include "game_objects/MainHero.h"
 #include "game_objects/WallBlock.h"
+#include "game_objects/BoxPlace.h"
 
 class SDLGame
 {
@@ -17,6 +18,7 @@ private:
 
 	MainHero hero;
 	std::vector<WallBlock> w_blocks{};
+	std::vector<BoxPlace> b_places{};
 
 	bool fullscren {true};
 
