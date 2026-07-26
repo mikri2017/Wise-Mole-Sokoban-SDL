@@ -403,3 +403,7 @@ FodyWeavers.xsd
 *.dll
 *.exe
 build
+
+# Assets
+*.mp3
+*.wav
