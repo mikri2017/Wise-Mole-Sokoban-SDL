@@ -1,4 +1,3 @@
-#include <iostream>
 #include "SDLGame.h"
 #include "VideoModeMgr.h"
 
@@ -24,12 +23,14 @@ SDLGame::SDLGame(SDL_Window* win, SDL_Renderer* r)
 
 	SDL_FRect area = loc_area.get_area();
 
+	float block_size = 50;
+
 	// Разместим персонажа
 	hero.set_position(area.x, area.y);
+	hero.set_size(block_size, block_size);
 	hero.set_max_hp(100);
 
 	// Накидаем стены
-	float block_size = 50;
 	SDL_FPoint pw[10]{
 		{area.x + block_size * 2, area.y + block_size},
 		{area.x + block_size * 3, area.y + block_size},
@@ -47,6 +48,7 @@ SDLGame::SDLGame(SDL_Window* win, SDL_Renderer* r)
 	{
 		WallBlock wb;
 		wb.set_position(pw[i].x, pw[i].y);
+		wb.set_size(block_size, block_size);
 		w_blocks.push_back(wb);
 	}
 
@@ -61,7 +63,23 @@ SDLGame::SDLGame(SDL_Window* win, SDL_Renderer* r)
 	{
 		BoxPlace bp;
 		bp.set_position(pbp[i].x, pbp[i].y);
+		bp.set_size(block_size, block_size);
 		b_places.push_back(bp);
+	}
+
+	// Добавим ящики
+	SDL_FPoint pb[3]{
+		{area.x + block_size * 3, area.y + block_size * 5},
+		{area.x + block_size * 2, area.y + block_size * 7},
+		{area.x + block_size * 7, area.y + block_size * 7}
+	};
+
+	for (auto i = 0; i < 3; i++)
+	{
+		Box b;
+		b.set_position(pb[i].x, pb[i].y);
+		b.set_size(block_size, block_size);
+		boxes.push_back(b);
 	}
 }
 
@@ -92,28 +110,32 @@ SDL_AppResult SDLGame::proc_event(void* appstate, SDL_Event* event)
 		if (event->key.scancode == SDL_SCANCODE_RIGHT)
 		{
 			hero.move(step, 0);
-			if (check_collisions_immv(hero))
+			if (check_collisions_immv(hero) ||
+				check_collisions_boxes(hero, step, 0))
 				hero.move(-step, 0); // Столкновение, откатываем
 		}
 
 		if (event->key.scancode == SDL_SCANCODE_LEFT)
 		{
 			hero.move(-step, 0);
-			if (check_collisions_immv(hero))
+			if (check_collisions_immv(hero) ||
+				check_collisions_boxes(hero, -step, 0))
 				hero.move(step, 0); // Вышли за пределы, откатываем
 		}
 
 		if (event->key.scancode == SDL_SCANCODE_UP)
 		{
 			hero.move(0, -step);
-			if (check_collisions_immv(hero))
+			if (check_collisions_immv(hero) ||
+				check_collisions_boxes(hero, 0, -step))
 				hero.move(0, step); // Вышли за пределы, откатываем
 		}
 
 		if (event->key.scancode == SDL_SCANCODE_DOWN)
 		{
 			hero.move(0, step);
-			if (check_collisions_immv(hero))
+			if (check_collisions_immv(hero) ||
+				check_collisions_boxes(hero, 0, step))
 				hero.move(0, -step); // Вышли за пределы, откатываем
 		}
 	}
@@ -136,6 +158,11 @@ SDL_AppResult SDLGame::app_iter(void* appstate)
 		b_place.render(renderer);
 	}
 
+	for (auto& box : boxes)
+	{
+		box.render(renderer);
+	}
+
 	// Персонаж рисуется последним,
 	// чтобы не закрасило
 	hero.render(renderer);
@@ -156,6 +183,51 @@ bool SDLGame::check_collisions_immv(GameObject game_o)
 	{
 		if (game_o.check_collision(w_block))
 			return true;
+	}
+
+	return false;
+}
+
+bool SDLGame::check_collisions_boxes(GameObject game_o, float diff_x, float diff_y)
+{
+	// Провека на столкновения с ящиками
+	for (auto& box : boxes)
+	{
+		if (game_o.check_collision(box))
+		{
+			box.move(diff_x, diff_y);
+			if (check_collisions_immv(box))
+			{
+				box.move(-diff_x, -diff_y);
+				return true;
+			}
+
+			// Сдвигаемый ящик не должен двигаться,
+			// если мешает другой такой же или стена
+			for (auto& box_c : boxes)
+			{
+				if (&box_c != &box)
+				{
+					if (box.check_collision(box_c))
+					{
+						box.move(-diff_x, -diff_y);
+						return true;
+					}
+				}
+			}
+
+			// Ящик сдвинут, проверяем его нахождение
+			// в нужном месте
+			for (auto& b_place : b_places)
+			{
+				if (box.check_inside(&b_place))
+				{
+					box.set_status(true);
+					break; // Ящик может быть только в одном месте
+				}
+				else box.set_status(false);
+			}
+		}
 	}
 
 	return false;

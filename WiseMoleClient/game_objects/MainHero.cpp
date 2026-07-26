@@ -1,16 +1,15 @@
 #include "MainHero.h"
-#include <iostream>
 
 MainHero::MainHero()
 {
 	// Назначаем начальные координаты
 	// и размеры героя
 	set_position(0, 0);	
-	fr.w = w;
-	fr.h = h;
+	fr.w = get_width();
+	fr.h = get_height();
 
 	// И капсулы столкновений
-	col_c.set_area(0, 0, w, h);
+	col_c.set_area(0, 0, get_width(), get_height());
 }
 
 void MainHero::render(SDL_Renderer* renderer)
@@ -26,7 +25,16 @@ void MainHero::set_position(float x, float y)
 	fr.x = p.x;
 	fr.y = p.y;
 
-	col_c.set_area(p.x, p.y, w, h);
+	col_c.set_area(p.x, p.y, get_width(), get_height());
+}
+
+void MainHero::set_size(float w, float h)
+{
+	GameObject::set_size(w, h);
+	fr.w = get_width();
+	fr.h = get_height();
+
+	col_c.set_area(fr.x, fr.y, get_width(), get_width());
 }
 
 void MainHero::move(float diff_x, float diff_y)

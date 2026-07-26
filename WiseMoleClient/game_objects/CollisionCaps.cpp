@@ -1,5 +1,4 @@
 #include "CollisionCaps.h"
-#include <iostream>
 
 SDL_FRect CollisionCaps::get_area()
 {
@@ -37,24 +36,6 @@ bool CollisionCaps::check_collision(SDL_FRect area_ch)
 		area.x + area.w > area_ch.x &&
 		area.y < area_ch.y + area_ch.h &&
 		area.y + area.h > area_ch.y)
-	{
-		return true;
-	}
-
-	return false;
-}
-
-bool CollisionCaps::check_inside(CollisionCaps* cc)
-{
-	return check_inside(cc->get_area());
-}
-
-bool CollisionCaps::check_inside(SDL_FRect area_ch)
-{
-	// Проверка, что мы внутри объекта
-	if (area.x >= area_ch.x && area.y >= area_ch.y &&
-		area.x + area.w <= area_ch.x + area_ch.w &&
-		area.y + area.h <= area_ch.y + area_ch.h)
 	{
 		return true;
 	}

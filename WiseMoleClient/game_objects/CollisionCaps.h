@@ -14,8 +14,4 @@ public:
 	bool check_collision(CollisionCaps* cc);
 
 	bool check_collision(SDL_FRect area_ch);
-
-	bool check_inside(CollisionCaps* cc);
-
-	bool check_inside(SDL_FRect area_ch);
 };

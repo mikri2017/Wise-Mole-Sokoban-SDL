@@ -2,12 +2,13 @@
 
 #include "GameObject.h"
 
-class WallBlock : public GameObject
+class Box : public GameObject
 {
 private:
 	SDL_FRect fr{ 0.0f, 0.0f, 0.0f, 0.0f };
+	bool in_place{ false };
 public:
-	WallBlock();
+	Box();
 
 	void render(SDL_Renderer* renderer);
 
@@ -16,4 +17,6 @@ public:
 	void set_size(float w, float h);
 
 	void move(float diff_x, float diff_y);
+
+	void set_status(bool in_place);
 };

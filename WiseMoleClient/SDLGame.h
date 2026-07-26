@@ -7,6 +7,7 @@
 #include "game_objects/MainHero.h"
 #include "game_objects/WallBlock.h"
 #include "game_objects/BoxPlace.h"
+#include "game_objects/Box.h"
 
 class SDLGame
 {
@@ -19,6 +20,7 @@ private:
 	MainHero hero;
 	std::vector<WallBlock> w_blocks{};
 	std::vector<BoxPlace> b_places{};
+	std::vector<Box> boxes{};
 
 	bool fullscren {true};
 
@@ -33,4 +35,6 @@ public:
 	SDL_AppResult app_iter(void* appstate);
 
 	bool check_collisions_immv(GameObject game_o);
+
+	bool check_collisions_boxes(GameObject game_o, float diff_x, float diff_y);
 };

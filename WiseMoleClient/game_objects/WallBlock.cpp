@@ -4,11 +4,11 @@ WallBlock::WallBlock()
 {
 	// Назначаем начальные координаты и размеры
 	set_position(0, 0);
-	fr.w = w;
-	fr.h = h;
+	fr.w = get_width();
+	fr.h = get_height();
 
 	// И капcулы столкновений
-	col_c.set_area(0, 0, w, h);
+	col_c.set_area(0, 0, get_width(), get_height());
 }
 
 void WallBlock::render(SDL_Renderer* renderer)
@@ -24,7 +24,16 @@ void WallBlock::set_position(float x, float y)
 	fr.x = p.x;
 	fr.y = p.y;
 
-	col_c.set_area(p.x, p.y, w, h);
+	col_c.set_area(p.x, p.y, get_width(), get_height());
+}
+
+void WallBlock::set_size(float w, float h)
+{
+	GameObject::set_size(w, h);
+	fr.w = get_width();
+	fr.h = get_height();
+
+	col_c.set_area(fr.x, fr.y, get_width(), get_width());
 }
 
 void WallBlock::move(float diff_x, float diff_y)

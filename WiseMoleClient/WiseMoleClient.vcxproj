@@ -145,6 +145,7 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="game_objects\Box.cpp" />
     <ClCompile Include="game_objects\BoxPlace.cpp" />
     <ClCompile Include="game_objects\CollisionCaps.cpp" />
     <ClCompile Include="game_objects\GameObject.cpp" />
@@ -155,6 +156,7 @@
     <ClCompile Include="VideoModeMgr.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="game_objects\Box.h" />
     <ClInclude Include="game_objects\BoxPlace.h" />
     <ClInclude Include="game_objects\CollisionCaps.h" />
     <ClInclude Include="game_objects\GameObject.h" />

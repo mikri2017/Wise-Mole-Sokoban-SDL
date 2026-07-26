@@ -1,5 +1,5 @@
-#include <iostream>
 #include "VideoModeMgr.h"
+#include <iostream>
 
 VideoModeMgr::VideoModeMgr()
 {
@@ -21,7 +21,7 @@ bool VideoModeMgr::define_video_mode(int w, int h)
 	dms = SDL_GetFullscreenDisplayModes(SDL_GetPrimaryDisplay(), nullptr);
 	if (dms == nullptr)
 	{
-		std::cout << "Something wrong" << std::endl;
+		std::cout << SDL_GetError() << std::endl;
 		return false;
 	}
 
