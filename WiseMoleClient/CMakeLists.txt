@@ -21,6 +21,12 @@ add_executable(WiseMoleClient
     main.cpp
     SDLGame.cpp
     VideoModeMgr.cpp
+    game_objects/Box.cpp
+    game_objects/BoxPlace.cpp
+    game_objects/CollisionCaps.cpp
+    game_objects/GameObject.cpp
+    game_objects/MainHero.cpp
+    game_objects/WallBlock.cpp
 )
 
 target_link_libraries(WiseMoleClient PRIVATE SDL3::SDL3)
