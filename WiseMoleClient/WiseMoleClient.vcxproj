@@ -148,6 +148,7 @@
     <ClCompile Include="game_objects\CollisionCaps.cpp" />
     <ClCompile Include="game_objects\GameObject.cpp" />
     <ClCompile Include="game_objects\MainHero.cpp" />
+    <ClCompile Include="game_objects\WallBlock.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="SDLGame.cpp" />
     <ClCompile Include="VideoModeMgr.cpp" />
@@ -156,6 +157,7 @@
     <ClInclude Include="game_objects\CollisionCaps.h" />
     <ClInclude Include="game_objects\GameObject.h" />
     <ClInclude Include="game_objects\MainHero.h" />
+    <ClInclude Include="game_objects\WallBlock.h" />
     <ClInclude Include="SDLGame.h" />
     <ClInclude Include="VideoModeMgr.h" />
   </ItemGroup>

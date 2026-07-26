@@ -3,14 +3,13 @@
 
 MainHero::MainHero()
 {
-	// Назначаем начальные координаты и размеры
-	// героя
-	float w{ 50.0f }, h{ 50.0f };
+	// Назначаем начальные координаты
+	// и размеры героя
 	set_position(0, 0);	
 	fr.w = w;
 	fr.h = h;
 
-	// И каплсулы столкновений
+	// И капсулы столкновений
 	col_c.set_area(0, 0, w, h);
 }
 
@@ -26,6 +25,8 @@ void MainHero::set_position(float x, float y)
 	SDL_FPoint p = get_position();
 	fr.x = p.x;
 	fr.y = p.y;
+
+	col_c.set_area(p.x, p.y, w, h);
 }
 
 void MainHero::move(float diff_x, float diff_y)

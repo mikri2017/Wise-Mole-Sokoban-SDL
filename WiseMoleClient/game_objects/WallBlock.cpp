@@ -1,0 +1,34 @@
+#include "WallBlock.h"
+
+WallBlock::WallBlock()
+{
+	// Назначаем начальные координаты и размеры
+	set_position(0, 0);
+	fr.w = w;
+	fr.h = h;
+
+	// И капcулы столкновений
+	col_c.set_area(0, 0, w, h);
+}
+
+void WallBlock::render(SDL_Renderer* renderer)
+{
+	SDL_SetRenderDrawColor(renderer, 0, 0, 255, SDL_ALPHA_OPAQUE);
+	SDL_RenderFillRect(renderer, &fr);
+}
+
+void WallBlock::set_position(float x, float y)
+{
+	GameObject::set_position(x, y);
+	SDL_FPoint p = get_position();
+	fr.x = p.x;
+	fr.y = p.y;
+
+	col_c.set_area(p.x, p.y, w, h);
+}
+
+void WallBlock::move(float diff_x, float diff_y)
+{
+	// Кусок стены не перемещается
+	return;
+}

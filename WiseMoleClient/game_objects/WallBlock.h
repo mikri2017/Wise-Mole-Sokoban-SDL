@@ -1,15 +1,14 @@
 #pragma once
 
 #include "GameObject.h"
-#include <SDL3/SDL.h>
 
-class MainHero : public GameObject
+class WallBlock : public GameObject
 {
 private:
-	float w{ 50.0f }, h{ 50.0f }; // Размеры героя
+	float w{ 50.0f }, h{ 50.0f }; // Размеры блока стены
 	SDL_FRect fr{ 0.0f, 0.0f, 0.0f, 0.0f };
 public:
-	MainHero();
+	WallBlock();
 
 	void render(SDL_Renderer* renderer);
 

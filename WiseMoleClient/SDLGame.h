@@ -1,9 +1,11 @@
 #pragma once
 
+#include <vector>
 #include <SDL3/SDL.h>
 #include "VideoModeMgr.h"
-#include "game_objects/MainHero.h"
 #include "game_objects/CollisionCaps.h"
+#include "game_objects/MainHero.h"
+#include "game_objects/WallBlock.h"
 
 class SDLGame
 {
@@ -12,9 +14,9 @@ private:
 	CollisionCaps loc_area; // Допустимая зона пространства
 	SDL_Renderer* renderer {nullptr};
 	VideoModeMgr vm_mgr;
-	int active_vm {0};
 
 	MainHero hero;
+	std::vector<WallBlock> w_blocks{};
 
 	bool fullscren {true};
 
@@ -27,4 +29,6 @@ public:
 	SDL_AppResult proc_event(void* appstate, SDL_Event* event);
 
 	SDL_AppResult app_iter(void* appstate);
+
+	bool check_collisions_immv(GameObject game_o);
 };

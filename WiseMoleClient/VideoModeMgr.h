@@ -1,7 +1,5 @@
 #pragma once
 
-#include <vector>
-#include <string>
 #include <SDL3/SDL_video.h>
 
 class VideoModeMgr

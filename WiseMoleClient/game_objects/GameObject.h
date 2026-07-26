@@ -10,7 +10,7 @@ private:
 	int hp_max{ 0 }; // Максимальное здоровье
 	SDL_FPoint pos{ 0, 0 }; // Расположение по оси X и Y
 protected:
-	CollisionCaps col_c;
+	CollisionCaps col_c{ CollisionCaps() };
 public:
 	int get_hp();
 
