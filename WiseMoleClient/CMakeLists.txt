@@ -20,6 +20,7 @@ add_compile_options(-Wall -Wextra -Wpedantic)
 add_executable(WiseMoleClient
     main.cpp
     SDLGame.cpp
+    SoundMgr.cpp
     VideoModeMgr.cpp
     game_objects/Box.cpp
     game_objects/BoxPlace.cpp
