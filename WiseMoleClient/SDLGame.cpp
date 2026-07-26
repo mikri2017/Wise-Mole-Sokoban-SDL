@@ -1,4 +1,5 @@
 #include "SDLGame.h"
+#include "SoundMgr.h"
 #include "VideoModeMgr.h"
 #include <iostream>
 
@@ -17,6 +18,10 @@ SDLGame::SDLGame(SDL_Window* win, SDL_Renderer* r)
 	// полноэкранный режим
 	vm_mgr.define_video_mode(w_area.w, w_area.h);
 	vm_mgr.set_video_mode(window);
+
+	// Подключим звук
+	// SDL3 Mixer работает только через указатели
+	snd_mgr = new SoundMgr();
 
 	// Назначим зону уровня для перемещения
 	float pos_x{ 33 }, pos_y{ 34 };
@@ -86,7 +91,7 @@ SDLGame::SDLGame(SDL_Window* win, SDL_Renderer* r)
 
 SDLGame::~SDLGame()
 {
-
+	delete snd_mgr;
 }
 
 SDL_AppResult SDLGame::proc_event(void* appstate, SDL_Event* event)
@@ -219,6 +224,9 @@ bool SDLGame::check_collisions_boxes(GameObject game_o, float diff_x, float diff
 					}
 				}
 			}
+
+			// Ящик сдвинули, проигрываем звук
+			snd_mgr->play_sound(SndType::t_move_box);
 
 			// Ящик сдвинут, проверяем его нахождение
 			// в нужном месте

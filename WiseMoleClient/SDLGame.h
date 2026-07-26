@@ -3,6 +3,7 @@
 #include <vector>
 #include <SDL3/SDL.h>
 #include "VideoModeMgr.h"
+#include "SoundMgr.h"
 #include "game_objects/CollisionCaps.h"
 #include "game_objects/MainHero.h"
 #include "game_objects/WallBlock.h"
@@ -16,6 +17,7 @@ private:
 	CollisionCaps loc_area; // Допустимая зона пространства
 	SDL_Renderer* renderer {nullptr};
 	VideoModeMgr vm_mgr;
+	SoundMgr* snd_mgr;
 
 	MainHero hero;
 	std::vector<WallBlock> w_blocks{};
