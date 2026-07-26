@@ -24,12 +24,30 @@
     <ClCompile Include="VideoModeMgr.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="game_objects\GameObject.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="game_objects\MainHero.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="game_objects\CollisionCaps.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="VideoModeMgr.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="SDLGame.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game_objects\GameObject.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game_objects\MainHero.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game_objects\CollisionCaps.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

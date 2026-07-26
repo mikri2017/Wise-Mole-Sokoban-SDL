@@ -3,5 +3,5 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
-  <Project Path="WiseMoleClient/WiseMoleClient.vcxproj" />
+  <Project Path="WiseMoleClient/WiseMoleClient.vcxproj" Id="a4f5fb11-9a0f-415d-8aaa-2343a4690035" />
 </Solution>
