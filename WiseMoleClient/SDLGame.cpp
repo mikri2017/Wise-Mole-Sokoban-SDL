@@ -3,29 +3,29 @@
 #include "VideoModeMgr.h"
 #include <iostream>
 
-SDLGame::SDLGame(SDL_Window* win, SDL_Renderer* r)
+SDLGame::~SDLGame()
 {
-	// Сохраним указатели на окно и рендер
-	// для внутреннего использования
-	window = win;
-	renderer = r;
+	delete snd_mgr;
+}
 
-	// Получим размеры текущего окна
-	SDL_Rect w_area;
-	SDL_GetWindowSafeArea(window, &w_area);
-
+void SDLGame::init(AppState* as)
+{
 	// Подбираем, среди возможных, подходящий
 	// полноэкранный режим
-	vm_mgr.define_video_mode(w_area.w, w_area.h);
-	vm_mgr.set_video_mode(window);
+	vm_mgr.define_video_mode(as->win_w, as->win_h);
+	vm_mgr.set_video_mode(as->win);
 
 	// Подключим звук
 	// SDL3 Mixer работает только через указатели
 	snd_mgr = new SoundMgr();
 
 	// Назначим зону уровня для перемещения
-	float pos_x{ 33 }, pos_y{ 34 };
-	loc_area.set_area(pos_x, pos_y, 1300, 500);
+	float area_x{ 33 },
+		area_y{ 34 },
+		area_w{ 1300 },
+		area_h{ 500 };
+
+	loc_area.set_area(area_x, area_y, area_w, area_h);
 
 	SDL_FRect area = loc_area.get_area();
 
@@ -89,12 +89,7 @@ SDLGame::SDLGame(SDL_Window* win, SDL_Renderer* r)
 	}
 }
 
-SDLGame::~SDLGame()
-{
-	delete snd_mgr;
-}
-
-SDL_AppResult SDLGame::proc_event(void* appstate, SDL_Event* event)
+SDL_AppResult SDLGame::proc_event(AppState* as, SDL_Event* event)
 {
 	if (event->type == SDL_EventType::SDL_EVENT_KEY_DOWN)
 	{
@@ -110,7 +105,7 @@ SDL_AppResult SDLGame::proc_event(void* appstate, SDL_Event* event)
 			else
 				fullscren = true;
 
-			SDL_SetWindowFullscreen(window, fullscren);
+			SDL_SetWindowFullscreen(as->win, fullscren);
 		}
 
 		if (event->key.scancode == SDL_SCANCODE_RIGHT)
@@ -152,31 +147,31 @@ SDL_AppResult SDLGame::proc_event(void* appstate, SDL_Event* event)
 	return SDL_APP_CONTINUE; // Продолжим выполнение программы
 }
 
-SDL_AppResult SDLGame::app_iter(void* appstate)
+SDL_AppResult SDLGame::app_iter(AppState* as)
 {
-	SDL_SetRenderDrawColor(renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
-	SDL_RenderClear(renderer);
+	SDL_SetRenderDrawColor(as->r, 255, 255, 255, SDL_ALPHA_OPAQUE);
+	SDL_RenderClear(as->r);
 
 	for (auto& w_block : w_blocks)
 	{
-		w_block.render(renderer);
+		w_block.render(as->r);
 	}
 
 	for (auto& b_place : b_places)
 	{
-		b_place.render(renderer);
+		b_place.render(as->r);
 	}
 
 	for (auto& box : boxes)
 	{
-		box.render(renderer);
+		box.render(as->r);
 	}
 
 	// Персонаж рисуется последним,
 	// чтобы не закрасило
-	hero.render(renderer);
+	hero.render(as->r);
 
-	SDL_RenderPresent(renderer);
+	SDL_RenderPresent(as->r);
 
 	return SDL_APP_CONTINUE; // Продолжим выполнение программы
 }

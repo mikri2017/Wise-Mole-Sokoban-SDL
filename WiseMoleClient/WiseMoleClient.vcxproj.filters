@@ -80,5 +80,8 @@
     <ClInclude Include="game_objects\MainHero.h">
       <Filter>Файлы заголовков\game_objects</Filter>
     </ClInclude>
+    <ClInclude Include="AppState.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

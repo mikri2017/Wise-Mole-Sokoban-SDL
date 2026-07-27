@@ -157,6 +157,7 @@
     <ClCompile Include="VideoModeMgr.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AppState.h" />
     <ClInclude Include="game_objects\Box.h" />
     <ClInclude Include="game_objects\BoxPlace.h" />
     <ClInclude Include="game_objects\CollisionCaps.h" />
