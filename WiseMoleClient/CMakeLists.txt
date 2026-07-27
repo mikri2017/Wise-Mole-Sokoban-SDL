@@ -28,6 +28,9 @@ add_executable(WiseMoleClient
     game_objects/GameObject.cpp
     game_objects/MainHero.cpp
     game_objects/WallBlock.cpp
+    scenes/Scene.cpp
+    scenes/SceneMgr.cpp
+    scenes/SCN_Level.cpp
 )
 
 target_link_libraries(WiseMoleClient PRIVATE SDL3::SDL3)
