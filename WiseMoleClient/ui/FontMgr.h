@@ -1,0 +1,41 @@
+#pragma once
+
+#include <iostream>
+#include <SDL3_ttf/SDL_ttf.h>
+
+enum fontAlign {
+    right,
+    left,
+    centre
+};
+
+class FontMgr
+{
+private:
+    TTF_Font *font;
+    std::string font_name;
+    int font_size;
+    SDL_Color font_color;
+
+    int letter_size_px;
+    int scn_indent;
+    int x_start_left, x_start_right;
+public:
+    FontMgr();
+
+    ~FontMgr();
+
+    void setLetterSizeInPX(size_t l_size_px);
+
+    void setFontName(std::string f_name);
+
+    void setFontSize(int f_size);
+
+    void setFontColor(const SDL_Color &f_color);
+
+    void setTextXStartFrom(int x_left = 0, int x_right = 0);
+
+    void paintText(SDL_Renderer *r, std::string text, float y, float h, fontAlign f_align);
+
+    void reloadFont();
+};

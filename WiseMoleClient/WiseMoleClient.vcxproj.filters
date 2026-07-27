@@ -25,6 +25,12 @@
     <Filter Include="Файлы заголовков\scenes">
       <UniqueIdentifier>{c665118e-c57f-4e19-b17d-66c013ab1313}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Исходные файлы\ui">
+      <UniqueIdentifier>{e11761ca-f315-4585-9dee-38ac5ea81ddc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\ui">
+      <UniqueIdentifier>{fef0cf9c-355b-4e47-9c7d-e25c83b7b8f4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -65,6 +71,15 @@
     </ClCompile>
     <ClCompile Include="scenes\SCN_Level.cpp">
       <Filter>Исходные файлы\scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="scenes\SCN_MainMenu.cpp">
+      <Filter>Исходные файлы\scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\Button.cpp">
+      <Filter>Исходные файлы\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\FontMgr.cpp">
+      <Filter>Исходные файлы\ui</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -109,6 +124,15 @@
     </ClInclude>
     <ClInclude Include="scenes\SCN_Level.h">
       <Filter>Файлы заголовков\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="scenes\SCN_MainMenu.h">
+      <Filter>Файлы заголовков\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="ui\FontMgr.h">
+      <Filter>Файлы заголовков\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="ui\Button.h">
+      <Filter>Файлы заголовков\ui</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

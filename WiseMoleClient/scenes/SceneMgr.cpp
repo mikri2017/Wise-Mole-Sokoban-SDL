@@ -1,11 +1,17 @@
 #include "SceneMgr.h"
+#include <iostream>
 
 SceneMgr::SceneMgr()
 {
 	// Заполним запас сцен
-	Scene* scn = new SCN_Level();
-	scn->set_name("game_level");
+	// Главное меню
+	Scene* scn = new SCN_MainMenu();
+	scn->set_name("main_menu");
+	scenes.push_back(scn);
 
+	// Игровое поле
+	scn = new SCN_Level();
+	scn->set_name("game_level");
 	scenes.push_back(scn);
 
 	// Устанавливаем активную, по умолчанию
@@ -82,9 +88,35 @@ SDL_AppResult SceneMgr::proc_keyboard_keydown(AppState* as, SDL_Scancode scancod
 
 SDL_AppResult SceneMgr::proc_game_reaction(GameReaction gr)
 {
-	if (gr.gr_type == GRType::GR_CHG_SCENE)
+	int tmp_scene_id;
+
+	switch (gr.gr_type)
 	{
+	case GRType::GR_CHG_SCENE:
+		// Меняем сцену
+		scene_id_prev = scene_id;
+		scene_id = 0;
 		std::cout << "Next Scene: " << gr.adv_inf << std::endl;
+		break;
+	case GRType::GR_CHG_SCENE_WRESET:
+		// Сбрасываем сцену игры и переходим на неё
+		scene_id_prev = scene_id;
+		scene_id = 1; // Сцена с игрой
+		std::cout << "Next Scene with reset: " << gr.adv_inf << std::endl;
+		break;
+	case GRType::GR_PREV_SCENE:
+		// Возврат к предыдущей сцене
+		tmp_scene_id = scene_id;
+		scene_id = scene_id_prev;
+		scene_id_prev = tmp_scene_id;
+		std::cout << "Return to Prev Scene" << std::endl;
+		break;
+	case GRType::GR_APP_EXIT:
+		// Завершаем работу приложения
+		return SDL_APP_SUCCESS;
+		break;
+	default:
+		break;
 	}
 
 	return SDL_APP_CONTINUE;

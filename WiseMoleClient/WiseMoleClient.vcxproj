@@ -71,7 +71,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\Dev\SDL\SDL3\include;C:\Dev\SDL\SDL3_mixer\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Dev\SDL\SDL3\include;C:\Dev\SDL\SDL3_ttf\include;C:\Dev\SDL\SDL3_mixer\include;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Dev\SDL\SDL3\lib\$(Platform);C:\Dev\SDL\SDL3_mixer\lib\$(Platform);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -120,7 +120,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <Version>0.1</Version>
-      <AdditionalDependencies>C:\Dev\SDL\SDL3\lib\$(PlatformTarget)\SDL3.lib;C:\Dev\SDL\SDL3_mixer\lib\$(PlatformTarget)\SDL3_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>C:\Dev\SDL\SDL3\lib\$(PlatformTarget)\SDL3.lib;C:\Dev\SDL\SDL3_ttf\lib\$(PlatformTarget)\SDL3_ttf.lib;C:\Dev\SDL\SDL3_mixer\lib\$(PlatformTarget)\SDL3_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Manifest>
       <EnableSegmentHeap>true</EnableSegmentHeap>
@@ -155,8 +155,11 @@
     <ClCompile Include="scenes\Scene.cpp" />
     <ClCompile Include="scenes\SceneMgr.cpp" />
     <ClCompile Include="scenes\SCN_Level.cpp" />
+    <ClCompile Include="scenes\SCN_MainMenu.cpp" />
     <ClCompile Include="SDLGame.cpp" />
     <ClCompile Include="SoundMgr.cpp" />
+    <ClCompile Include="ui\Button.cpp" />
+    <ClCompile Include="ui\FontMgr.cpp" />
     <ClCompile Include="VideoModeMgr.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -171,8 +174,11 @@
     <ClInclude Include="scenes\Scene.h" />
     <ClInclude Include="scenes\SceneMgr.h" />
     <ClInclude Include="scenes\SCN_Level.h" />
+    <ClInclude Include="scenes\SCN_MainMenu.h" />
     <ClInclude Include="SDLGame.h" />
     <ClInclude Include="SoundMgr.h" />
+    <ClInclude Include="ui\Button.h" />
+    <ClInclude Include="ui\FontMgr.h" />
     <ClInclude Include="VideoModeMgr.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

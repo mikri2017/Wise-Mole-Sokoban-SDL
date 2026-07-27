@@ -36,6 +36,16 @@ SDL_AppResult SDLGame::proc_event(AppState* as, SDL_Event* event)
 			return scn_mgr->proc_keyboard_keydown(as, event->key.scancode);
 		}
 	}
+	else if (event->type == SDL_EventType::SDL_EVENT_MOUSE_MOTION)
+	{
+		// Движение мышкой
+		return scn_mgr->proc_mouse_motion(as, event->motion.x, event->motion.y);
+	}
+	else if (event->type == SDL_EventType::SDL_EVENT_MOUSE_BUTTON_DOWN)
+	{
+		// Клик мышкой
+		return scn_mgr->proc_mouse_button_event(as, event->button);
+	}
 
 	return SDL_APP_CONTINUE; // Продолжим выполнение программы
 }

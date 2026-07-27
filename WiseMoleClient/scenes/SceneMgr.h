@@ -2,6 +2,7 @@
 
 #include <vector>
 #include "Scene.h"
+#include "SCN_MainMenu.h"
 #include "SCN_Level.h"
 #include "../AppState.h"
 
