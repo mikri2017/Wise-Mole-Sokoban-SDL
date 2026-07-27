@@ -13,12 +13,16 @@ class SCN_Level : public Scene
 private:
 	CollisionCaps loc_area; // Допустимая зона пространства
 
-	MainHero hero;
+	// Размер блока позволит расположить, максимум
+	// 40 объектов по горизонтали и 20 - по вертикали
+	const float block_size = 25;
+
 	std::vector<WallBlock> w_blocks{};
 	std::vector<BoxPlace> b_places{};
 	std::vector<Box> boxes{};
 
-	const float step = 10; // Длина шага персонажа
+	MainHero hero;
+	const float step = 25; // Длина шага персонажа
 public:
 	SCN_Level();
 

@@ -3,16 +3,14 @@
 SCN_Level::SCN_Level()
 {
 	// Назначим зону уровня для перемещения
-	float area_x{ 33 },
+	float area_x{ 183 },
 		area_y{ 34 },
-		area_w{ 1300 },
+		area_w{ 1000 },
 		area_h{ 500 };
 
 	loc_area.set_area(area_x, area_y, area_w, area_h);
 
 	SDL_FRect area = loc_area.get_area();
-
-	float block_size = 50;
 
 	// Разместим персонажа
 	hero.set_position(area.x, area.y);
