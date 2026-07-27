@@ -19,6 +19,12 @@
     <Filter Include="Файлы заголовков\game_objects">
       <UniqueIdentifier>{008eb3b7-3d69-4d32-99da-9d03bf8ca29c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Исходные файлы\scenes">
+      <UniqueIdentifier>{3937fd11-5154-4435-a83b-c6768ec07819}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\scenes">
+      <UniqueIdentifier>{c665118e-c57f-4e19-b17d-66c013ab1313}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -51,6 +57,15 @@
     <ClCompile Include="game_objects\WallBlock.cpp">
       <Filter>Исходные файлы\game_objects</Filter>
     </ClCompile>
+    <ClCompile Include="scenes\SceneMgr.cpp">
+      <Filter>Исходные файлы\scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="scenes\Scene.cpp">
+      <Filter>Исходные файлы\scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="scenes\SCN_Level.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="VideoModeMgr.h">
@@ -82,6 +97,18 @@
     </ClInclude>
     <ClInclude Include="AppState.h">
       <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="scenes\Scene.h">
+      <Filter>Файлы заголовков\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="scenes\SceneMgr.h">
+      <Filter>Файлы заголовков\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="scenes\GameReaction.h">
+      <Filter>Файлы заголовков\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="scenes\SCN_Level.h">
+      <Filter>Файлы заголовков\scenes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

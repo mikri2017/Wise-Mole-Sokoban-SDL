@@ -9,10 +9,6 @@ VideoModeMgr::VideoModeMgr()
 	refresh_rate = dm_cur_sys->refresh_rate;
 }
 
-VideoModeMgr::~VideoModeMgr()
-{
-}
-
 bool VideoModeMgr::define_video_mode(int w, int h)
 {
 	// Получаем доступные режимы монитора

@@ -152,6 +152,9 @@
     <ClCompile Include="game_objects\MainHero.cpp" />
     <ClCompile Include="game_objects\WallBlock.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="scenes\Scene.cpp" />
+    <ClCompile Include="scenes\SceneMgr.cpp" />
+    <ClCompile Include="scenes\SCN_Level.cpp" />
     <ClCompile Include="SDLGame.cpp" />
     <ClCompile Include="SoundMgr.cpp" />
     <ClCompile Include="VideoModeMgr.cpp" />
@@ -164,6 +167,10 @@
     <ClInclude Include="game_objects\GameObject.h" />
     <ClInclude Include="game_objects\MainHero.h" />
     <ClInclude Include="game_objects\WallBlock.h" />
+    <ClInclude Include="scenes\GameReaction.h" />
+    <ClInclude Include="scenes\Scene.h" />
+    <ClInclude Include="scenes\SceneMgr.h" />
+    <ClInclude Include="scenes\SCN_Level.h" />
     <ClInclude Include="SDLGame.h" />
     <ClInclude Include="SoundMgr.h" />
     <ClInclude Include="VideoModeMgr.h" />

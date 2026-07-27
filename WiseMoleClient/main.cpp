@@ -26,6 +26,10 @@ SDL_AppResult SDL_AppInit(void** appstate, int argc, char* argv[])
         return SDL_APP_FAILURE;
     }
 
+    // Инициализируем менеджер звуков
+    // SDL3 Mixer работает только через указатели
+    as->snd_mgr = new SoundMgr();
+
     *appstate = as;
 
     // Создаем объект игры
@@ -58,6 +62,7 @@ void SDL_AppQuit(void* appstate, SDL_AppResult result)
     if (as) {
         SDL_DestroyRenderer(as->r);
         SDL_DestroyWindow(as->win);
+        delete as->snd_mgr;
         delete as;
     }
 

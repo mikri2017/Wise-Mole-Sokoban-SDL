@@ -11,8 +11,6 @@ private:
 public:
 	VideoModeMgr();
 
-	~VideoModeMgr();
-
 	// Определить режим для полного экрана
 	bool define_video_mode(int w, int h);
 
