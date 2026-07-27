@@ -64,7 +64,7 @@
       <Filter>Исходные файлы\scenes</Filter>
     </ClCompile>
     <ClCompile Include="scenes\SCN_Level.cpp">
-      <Filter>Исходные файлы</Filter>
+      <Filter>Исходные файлы\scenes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
