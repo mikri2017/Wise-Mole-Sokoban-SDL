@@ -25,7 +25,7 @@ public:
 
     void set_size(float w, float h);
 
-    bool check_hover(float x, float y);
+    bool check_hover(float x, float y) const;
 
     void render(SDL_Renderer *r);
 };

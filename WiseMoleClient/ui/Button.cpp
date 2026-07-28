@@ -15,10 +15,10 @@ Button::Button()
     font_margin_up_dowm = 5;
 
     font_caption = new FontMgr();
-    font_caption->setFontName("assets/fonts/XoloniumBold.ttf");
-    font_caption->setFontSize(10);
-    font_caption->setFontColor(font_color);
-    font_caption->setLetterSizeInPX(20);
+    font_caption->set_font("assets/fonts/XoloniumBold.ttf");
+    font_caption->set_font_size(10);
+    font_caption->set_font_color(font_color);
+    font_caption->set_letter_size_in_px(20);
 }
 
 Button::~Button()
@@ -41,10 +41,10 @@ void Button::set_size(float w, float h)
 {
     btn.w = w;
     btn.h = h;
-    font_caption->setTextXStartFrom(btn.x + font_margin_left_right, btn.x + btn.w - font_margin_left_right);
+    font_caption->set_text_xstart_from(btn.x + font_margin_left_right, btn.x + btn.w - font_margin_left_right);
 }
 
-bool Button::check_hover(float x, float y)
+bool Button::check_hover(float x, float y) const
 {
     if(x >= btn.x && x <= btn.x + btn.w)
     {
@@ -58,5 +58,5 @@ bool Button::check_hover(float x, float y)
 void Button::render(SDL_Renderer *r)
 {
     SDL_RenderRect(r, &btn);
-    font_caption->paintText(r, s_caption, btn.y, btn.h - font_margin_up_dowm, fontAlign::centre);
+    font_caption->render(r, s_caption, btn.y, btn.h - font_margin_up_dowm, FontAlign::Centre);
 }

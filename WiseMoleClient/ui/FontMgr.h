@@ -3,39 +3,39 @@
 #include <iostream>
 #include <SDL3_ttf/SDL_ttf.h>
 
-enum fontAlign {
-    right,
-    left,
-    centre
+enum class FontAlign {
+    Right,
+    Left,
+    Centre
 };
 
 class FontMgr
 {
 private:
-    TTF_Font *font;
+    TTF_Font* font{ nullptr };
     std::string font_name;
-    int font_size;
-    SDL_Color font_color;
+    float font_size{ 0 };
+    SDL_Color font_color{ 0, 0, 0, 0 };
 
-    int letter_size_px;
-    int scn_indent;
-    int x_start_left, x_start_right;
+    float letter_size_px;
+    float scn_indent;
+    float x_start_left{ 0 }, x_start_right{ 0 };
 public:
     FontMgr();
 
     ~FontMgr();
 
-    void setLetterSizeInPX(size_t l_size_px);
+    void set_letter_size_in_px(float l_size_px);
 
-    void setFontName(std::string f_name);
+    void set_font(std::string path);
 
-    void setFontSize(int f_size);
+    void set_font_size(float f_size);
 
-    void setFontColor(const SDL_Color &f_color);
+    void set_font_color(const SDL_Color &f_color);
 
-    void setTextXStartFrom(int x_left = 0, int x_right = 0);
+    void set_text_xstart_from(float x_left = 0, float x_right = 0);
 
-    void paintText(SDL_Renderer *r, std::string text, float y, float h, fontAlign f_align);
+    void render(SDL_Renderer *r, std::string text, float y, float h, FontAlign f_align);
 
-    void reloadFont();
+    void reload_font();
 };
