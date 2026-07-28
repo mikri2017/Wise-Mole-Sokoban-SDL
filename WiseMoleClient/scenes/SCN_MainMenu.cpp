@@ -3,8 +3,15 @@
 
 SCN_MainMenu::SCN_MainMenu()
 {
-    delay_time = 50;
+    reset();
+}
 
+SCN_MainMenu::~SCN_MainMenu()
+{
+}
+
+void SCN_MainMenu::reset()
+{
     menuPosition.x = 120;
     menuPosition.y = 70;
     btn_w = 400;
@@ -18,10 +25,6 @@ SCN_MainMenu::SCN_MainMenu()
     btn_exit.set_caption("EXIT");
     btn_exit.set_position(menuPosition.x, menuPosition.y + btn_h + 30);
     btn_exit.set_size(btn_w, btn_h);
-}
-
-SCN_MainMenu::~SCN_MainMenu()
-{
 }
 
 SDL_AppResult SCN_MainMenu::app_iter(AppState *as)

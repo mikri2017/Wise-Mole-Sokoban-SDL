@@ -14,6 +14,8 @@ public:
 
     bool set_name(std::string s_name);
 
+	virtual void reset() = 0;
+
 	virtual SDL_AppResult app_iter(AppState* as) = 0;
 
 	virtual GameReaction proc_mouse_motion(AppState* as, float x, float y) = 0;

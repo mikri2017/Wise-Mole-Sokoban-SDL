@@ -26,4 +26,6 @@ public:
 	SDL_AppResult proc_keyboard_keydown(AppState* as, SDL_Scancode scancode);
 
 	SDL_AppResult proc_game_reaction(GameReaction gr);
+
+	int find_scene(std::string name);
 };

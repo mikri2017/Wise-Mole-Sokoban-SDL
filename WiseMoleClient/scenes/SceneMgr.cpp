@@ -1,5 +1,6 @@
 #include "SceneMgr.h"
 #include <iostream>
+#include <algorithm>
 
 SceneMgr::SceneMgr()
 {
@@ -90,34 +91,52 @@ SDL_AppResult SceneMgr::proc_game_reaction(GameReaction gr)
 {
 	int tmp_scene_id;
 
-	switch (gr.gr_type)
+	if (gr.gr_type == GRType::GR_CHG_SCENE || gr.gr_type == GRType::GR_CHG_SCENE_WRESET)
 	{
-	case GRType::GR_CHG_SCENE:
 		// Меняем сцену
+		tmp_scene_id = find_scene(gr.adv_inf);
+		if (tmp_scene_id == -1)
+		{
+			// Требуемая сцена не найдена
+			SDL_Log("Error! Scene \"%s\" not found!", gr.adv_inf.c_str());
+			return SDL_APP_FAILURE;
+		}
+
 		scene_id_prev = scene_id;
-		scene_id = 0;
-		std::cout << "Next Scene: " << gr.adv_inf << std::endl;
-		break;
-	case GRType::GR_CHG_SCENE_WRESET:
-		// Сбрасываем сцену игры и переходим на неё
-		scene_id_prev = scene_id;
-		scene_id = 1; // Сцена с игрой
-		std::cout << "Next Scene with reset: " << gr.adv_inf << std::endl;
-		break;
-	case GRType::GR_PREV_SCENE:
+		scene_id = tmp_scene_id;
+
+		if (gr.gr_type == GRType::GR_CHG_SCENE_WRESET)
+		{
+			// Производим сброс
+			scenes[scene_id]->reset();
+		}
+	}
+	else if (gr.gr_type == GRType::GR_PREV_SCENE)
+	{
 		// Возврат к предыдущей сцене
 		tmp_scene_id = scene_id;
 		scene_id = scene_id_prev;
 		scene_id_prev = tmp_scene_id;
 		std::cout << "Return to Prev Scene" << std::endl;
-		break;
-	case GRType::GR_APP_EXIT:
-		// Завершаем работу приложения
+	}
+	else if (gr.gr_type == GRType::GR_APP_EXIT)
+	{
 		return SDL_APP_SUCCESS;
-		break;
-	default:
-		break;
 	}
 
 	return SDL_APP_CONTINUE;
+}
+
+int SceneMgr::find_scene(std::string name)
+{
+	int id = 0;
+	for (auto& scn : scenes)
+	{
+		if (scn->get_name() == name)
+			return id;
+
+		id++;
+	}
+
+	return -1; // Ничего не найдено
 }

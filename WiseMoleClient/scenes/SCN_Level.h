@@ -26,6 +26,8 @@ private:
 public:
 	SCN_Level();
 
+	void reset();
+
 	SDL_AppResult app_iter(AppState* as);
 
 	GameReaction proc_mouse_motion(AppState* as, float x, float y);

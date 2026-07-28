@@ -12,10 +12,22 @@ SCN_Level::SCN_Level()
 
 	SDL_FRect area = loc_area.get_area();
 
+	// Пересоберем уровень
+	reset();
+}
+
+void SCN_Level::reset()
+{
 	// Разместим персонажа
+	SDL_FRect area = loc_area.get_area();
 	hero.set_position(area.x, area.y);
 	hero.set_size(block_size, block_size);
 	hero.set_max_hp(100);
+
+	// Очистим объекты уровня
+	w_blocks.clear();
+	b_places.clear();
+	boxes.clear();
 
 	// Накидаем стены
 	SDL_FPoint pw[10]{
