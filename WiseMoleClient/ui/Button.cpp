@@ -16,9 +16,9 @@ Button::Button()
 
     font_caption = new FontMgr();
     font_caption->set_font("assets/fonts/XoloniumBold.ttf");
-    font_caption->set_font_size(10);
+    font_caption->set_font_size(48);
     font_caption->set_font_color(font_color);
-    font_caption->set_letter_size_in_px(20);
+    font_caption->set_letter_size_in_px(22);
 }
 
 Button::~Button()
