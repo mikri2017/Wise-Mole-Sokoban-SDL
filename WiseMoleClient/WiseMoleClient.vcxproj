@@ -157,6 +157,7 @@
     <ClCompile Include="scenes\SCN_Congrats.cpp" />
     <ClCompile Include="scenes\SCN_Level.cpp" />
     <ClCompile Include="scenes\SCN_MainMenu.cpp" />
+    <ClCompile Include="scenes\SCN_PauseMenu.cpp" />
     <ClCompile Include="SDLGame.cpp" />
     <ClCompile Include="SoundMgr.cpp" />
     <ClCompile Include="ui\Button.cpp" />
@@ -177,6 +178,7 @@
     <ClInclude Include="scenes\SCN_Congrats.h" />
     <ClInclude Include="scenes\SCN_Level.h" />
     <ClInclude Include="scenes\SCN_MainMenu.h" />
+    <ClInclude Include="scenes\SCN_PauseMenu.h" />
     <ClInclude Include="SDLGame.h" />
     <ClInclude Include="SoundMgr.h" />
     <ClInclude Include="ui\Button.h" />

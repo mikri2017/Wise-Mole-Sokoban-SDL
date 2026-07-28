@@ -3,6 +3,7 @@
 #include <vector>
 #include "Scene.h"
 #include "SCN_MainMenu.h"
+#include "SCN_PauseMenu.h"
 #include "SCN_Level.h"
 #include "SCN_Congrats.h"
 #include "../AppState.h"

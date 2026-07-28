@@ -1,5 +1,4 @@
 #include "SceneMgr.h"
-#include <iostream>
 #include <algorithm>
 
 SceneMgr::SceneMgr()
@@ -8,6 +7,11 @@ SceneMgr::SceneMgr()
 	// Главное меню
 	Scene* scn = new SCN_MainMenu();
 	scn->set_name("main_menu");
+	scenes.push_back(scn);
+
+	// Пауза
+	scn = new SCN_PauseMenu();
+	scn->set_name("pause_menu");
 	scenes.push_back(scn);
 
 	// Игровое поле
@@ -80,9 +84,31 @@ SDL_AppResult SceneMgr::proc_mouse_button_event(AppState* as, SDL_MouseButtonEve
 
 SDL_AppResult SceneMgr::proc_keyboard_keydown(AppState* as, SDL_Scancode scancode)
 {
+	int tmp_scene_id;
+
 	if (scancode == SDL_SCANCODE_ESCAPE)
 	{
-		return SDL_APP_SUCCESS;
+		if (scenes[scene_id]->get_name() == "game_level")
+		{
+			// С игры переходим на меню паузы
+			tmp_scene_id = find_scene("pause_menu");
+			if (tmp_scene_id == -1)
+			{
+				// Требуемая сцена не найдена
+				SDL_Log("Error! Scene \"%s\" not found!", "pause_menu");
+				return SDL_APP_FAILURE;
+			}
+
+			scene_id_prev = scene_id;
+			scene_id = tmp_scene_id;
+		}
+		else if (scenes[scene_id]->get_name() == "pause_menu")
+		{
+			// Возврат к предыдущей сцене
+			tmp_scene_id = scene_id;
+			scene_id = scene_id_prev;
+			scene_id_prev = tmp_scene_id;
+		}
 	}
 
 	if (scenes.size() > scene_id)
@@ -127,7 +153,6 @@ SDL_AppResult SceneMgr::proc_game_reaction(GameReaction gr)
 		tmp_scene_id = scene_id;
 		scene_id = scene_id_prev;
 		scene_id_prev = tmp_scene_id;
-		std::cout << "Return to Prev Scene" << std::endl;
 	}
 	else if (gr.gr_type == GRType::AppExit)
 	{

@@ -84,6 +84,9 @@
     <ClCompile Include="scenes\SCN_Congrats.cpp">
       <Filter>Исходные файлы\scenes</Filter>
     </ClCompile>
+    <ClCompile Include="scenes\SCN_PauseMenu.cpp">
+      <Filter>Исходные файлы\scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="VideoModeMgr.h">
@@ -138,6 +141,9 @@
       <Filter>Файлы заголовков\ui</Filter>
     </ClInclude>
     <ClInclude Include="scenes\SCN_Congrats.h">
+      <Filter>Файлы заголовков\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="scenes\SCN_PauseMenu.h">
       <Filter>Файлы заголовков\scenes</Filter>
     </ClInclude>
   </ItemGroup>
