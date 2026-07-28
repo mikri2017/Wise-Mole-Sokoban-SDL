@@ -15,6 +15,11 @@ SceneMgr::SceneMgr()
 	scn->set_name("game_level");
 	scenes.push_back(scn);
 
+	// Поздравления с успешным прохождением
+	scn = new SCN_Congrats();
+	scn->set_name("congrats");
+	scenes.push_back(scn);
+
 	// Устанавливаем активную, по умолчанию
 	scene_id = 0;
 }
@@ -30,9 +35,14 @@ SceneMgr::~SceneMgr()
 
 SDL_AppResult SceneMgr::app_iter(AppState* as)
 {
+	GameReaction gr;
+
 	// Очередной цикл отработки программы
 	if (scenes.size() > scene_id)
-		return scenes[scene_id]->app_iter(as);
+	{
+		gr = scenes[scene_id]->app_iter(as);
+		return proc_game_reaction(gr);
+	}
 	else
 	{
 		SDL_Log("Error! Active scene_id [%i] more than scenes count!", scene_id);

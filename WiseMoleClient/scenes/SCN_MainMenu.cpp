@@ -12,8 +12,8 @@ SCN_MainMenu::~SCN_MainMenu()
 
 void SCN_MainMenu::reset()
 {
-    menuPosition.x = 120;
-    menuPosition.y = 70;
+    menuPosition.x = 455;
+    menuPosition.y = 384;
     btn_w = 400;
     btn_h = 70;
 
@@ -27,8 +27,11 @@ void SCN_MainMenu::reset()
     btn_exit.set_size(btn_w, btn_h);
 }
 
-SDL_AppResult SCN_MainMenu::app_iter(AppState *as)
+GameReaction SCN_MainMenu::app_iter(AppState *as)
 {
+    GameReaction gr;
+    gr.gr_type = GRType::Ignore;
+
     SDL_SetRenderDrawColor(as->r, 255, 255, 255, SDL_ALPHA_OPAQUE);
     SDL_RenderClear(as->r);
     SDL_SetRenderDrawColor(as->r, 255, 0, 0, SDL_ALPHA_OPAQUE);
@@ -38,7 +41,7 @@ SDL_AppResult SCN_MainMenu::app_iter(AppState *as)
 
     SDL_RenderPresent(as->r);
 
-    return SDL_APP_CONTINUE;
+    return gr;
 }
 
 GameReaction SCN_MainMenu::proc_mouse_motion(AppState* as, float x, float y)

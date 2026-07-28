@@ -4,10 +4,11 @@
 #include "Scene.h"
 #include "SCN_MainMenu.h"
 #include "SCN_Level.h"
+#include "SCN_Congrats.h"
 #include "../AppState.h"
 
 class SceneMgr
-{ // Менеджер сцен будет знать, какие у него есть сцены и как их запускать друг за другом!
+{
 private:
 	int scene_id{ 0 };
 	int scene_id_prev{ 0 }; // ID предыдущей сцены

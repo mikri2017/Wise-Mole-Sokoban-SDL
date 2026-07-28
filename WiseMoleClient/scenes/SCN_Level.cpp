@@ -82,8 +82,11 @@ void SCN_Level::reset()
 	}
 }
 
-SDL_AppResult SCN_Level::app_iter(AppState* as)
+GameReaction SCN_Level::app_iter(AppState* as)
 {
+	GameReaction gr;
+	gr.gr_type = GRType::Ignore;
+
 	SDL_SetRenderDrawColor(as->r, 255, 255, 255, SDL_ALPHA_OPAQUE);
 	SDL_RenderClear(as->r);
 
@@ -108,7 +111,16 @@ SDL_AppResult SCN_Level::app_iter(AppState* as)
 
 	SDL_RenderPresent(as->r);
 
-	return SDL_APP_CONTINUE; // Продолжим выполнение программы
+	if (check_for_win())
+	{
+		// Победили, отправляем на сцену поздравления
+		// Проверяем в самом начале, чтобы все объекты
+		// успели отрисоваться в своих финальных местах
+		gr.gr_type = GRType::ChgScene;
+		gr.adv_inf = "congrats";
+	}
+
+	return gr;
 }
 
 GameReaction SCN_Level::proc_mouse_motion(AppState* as, float x, float y)
@@ -156,13 +168,6 @@ GameReaction SCN_Level::proc_keyboard_keydown(AppState* as, SDL_Scancode scancod
 		if (check_collisions_immv(hero) ||
 			check_collisions_boxes(as->snd_mgr, hero, 0, step))
 			hero.move(0, -step); // Вышли за пределы, откатываем
-	}
-
-	if (check_for_win())
-	{
-		// Победили, отправляем на сцену поздравления
-		gr.gr_type = GRType::ChgScene;
-		gr.adv_inf = "congrats";
 	}
 
 	return gr;

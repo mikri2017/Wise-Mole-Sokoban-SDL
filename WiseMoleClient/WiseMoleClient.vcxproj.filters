@@ -81,6 +81,9 @@
     <ClCompile Include="ui\FontMgr.cpp">
       <Filter>Исходные файлы\ui</Filter>
     </ClCompile>
+    <ClCompile Include="scenes\SCN_Congrats.cpp">
+      <Filter>Исходные файлы\scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="VideoModeMgr.h">
@@ -133,6 +136,9 @@
     </ClInclude>
     <ClInclude Include="ui\Button.h">
       <Filter>Файлы заголовков\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="scenes\SCN_Congrats.h">
+      <Filter>Файлы заголовков\scenes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
