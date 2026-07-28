@@ -31,17 +31,12 @@ SDL_AppResult SCN_MainMenu::app_iter(AppState *as)
 {
     SDL_SetRenderDrawColor(as->r, 255, 255, 255, SDL_ALPHA_OPAQUE);
     SDL_RenderClear(as->r);
-
-    SDL_SetRenderDrawColor(as->r, 255, 255, 255, SDL_ALPHA_OPAQUE);
-    SDL_RenderClear(as->r);
     SDL_SetRenderDrawColor(as->r, 255, 0, 0, SDL_ALPHA_OPAQUE);
 
     btn_new_game.render(as->r);
     btn_exit.render(as->r);
 
     SDL_RenderPresent(as->r);
-
-    SDL_Delay(delay_time);
 
     return SDL_APP_CONTINUE;
 }

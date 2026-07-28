@@ -6,7 +6,6 @@
 class SCN_MainMenu : public Scene
 {
 private:
-    int delay_time{ 50 };
     SDL_FPoint menuPosition;
     float btn_w, btn_h;
     Button btn_new_game, btn_exit;
