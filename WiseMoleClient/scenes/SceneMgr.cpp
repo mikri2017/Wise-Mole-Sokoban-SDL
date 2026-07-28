@@ -91,7 +91,7 @@ SDL_AppResult SceneMgr::proc_game_reaction(GameReaction gr)
 {
 	int tmp_scene_id;
 
-	if (gr.gr_type == GRType::GR_CHG_SCENE || gr.gr_type == GRType::GR_CHG_SCENE_WRESET)
+	if (gr.gr_type == GRType::ChgScene || gr.gr_type == GRType::ChgSceneWReset)
 	{
 		// Меняем сцену
 		tmp_scene_id = find_scene(gr.adv_inf);
@@ -105,13 +105,13 @@ SDL_AppResult SceneMgr::proc_game_reaction(GameReaction gr)
 		scene_id_prev = scene_id;
 		scene_id = tmp_scene_id;
 
-		if (gr.gr_type == GRType::GR_CHG_SCENE_WRESET)
+		if (gr.gr_type == GRType::ChgSceneWReset)
 		{
 			// Производим сброс
 			scenes[scene_id]->reset();
 		}
 	}
-	else if (gr.gr_type == GRType::GR_PREV_SCENE)
+	else if (gr.gr_type == GRType::PrevScene)
 	{
 		// Возврат к предыдущей сцене
 		tmp_scene_id = scene_id;
@@ -119,7 +119,7 @@ SDL_AppResult SceneMgr::proc_game_reaction(GameReaction gr)
 		scene_id_prev = tmp_scene_id;
 		std::cout << "Return to Prev Scene" << std::endl;
 	}
-	else if (gr.gr_type == GRType::GR_APP_EXIT)
+	else if (gr.gr_type == GRType::AppExit)
 	{
 		return SDL_APP_SUCCESS;
 	}

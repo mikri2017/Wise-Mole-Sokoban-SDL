@@ -49,7 +49,7 @@ SDL_AppResult SCN_MainMenu::app_iter(AppState *as)
 GameReaction SCN_MainMenu::proc_mouse_motion(AppState* as, float x, float y)
 {
     GameReaction gr;
-    gr.gr_type = GRType::GR_IGNORE;
+    gr.gr_type = GRType::Ignore;
 
     return gr;
 }
@@ -57,7 +57,7 @@ GameReaction SCN_MainMenu::proc_mouse_motion(AppState* as, float x, float y)
 GameReaction SCN_MainMenu::proc_mouse_button_event(AppState* as, SDL_MouseButtonEvent m_btn_event)
 {
     GameReaction gr;
-    gr.gr_type = GRType::GR_IGNORE;
+    gr.gr_type = GRType::Ignore;
 
     // Клик левой кнопкой мышки
     if(m_btn_event.button == SDL_BUTTON_LEFT)
@@ -68,13 +68,13 @@ GameReaction SCN_MainMenu::proc_mouse_button_event(AppState* as, SDL_MouseButton
             if(btn_exit.check_hover(m_btn_event.x, m_btn_event.y))
             {
                 // Выходим из игры
-                gr.gr_type = GRType::GR_APP_EXIT;
+                gr.gr_type = GRType::AppExit;
                 return gr;
             }
 
             if(btn_new_game.check_hover(m_btn_event.x, m_btn_event.y))
             {
-                gr.gr_type = GRType::GR_CHG_SCENE_WRESET;
+                gr.gr_type = GRType::ChgSceneWReset;
                 gr.adv_inf = "game_level";
                 return gr;
             }
@@ -87,7 +87,7 @@ GameReaction SCN_MainMenu::proc_mouse_button_event(AppState* as, SDL_MouseButton
 GameReaction SCN_MainMenu::proc_keyboard_keydown(AppState* as, SDL_Scancode scancode)
 {
     GameReaction gr;
-    gr.gr_type = GRType::GR_IGNORE;
+    gr.gr_type = GRType::Ignore;
 
     return gr;
 }

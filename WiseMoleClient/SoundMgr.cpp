@@ -25,7 +25,7 @@ SoundMgr::~SoundMgr()
 
 void SoundMgr::play_sound(SndType snd_type)
 {
-    if (snd_type == SndType::t_move_box)
+    if (snd_type == SndType::MoveBox)
         if (!MIX_PlayAudio(m_mxr, move_box))
             std::cout << SDL_GetError() << std::endl;
 }

@@ -124,7 +124,7 @@ GameReaction SCN_Level::proc_mouse_button_event(AppState* as, SDL_MouseButtonEve
 GameReaction SCN_Level::proc_keyboard_keydown(AppState* as, SDL_Scancode scancode)
 {
 	GameReaction gr;
-	gr.gr_type = GRType::GR_IGNORE;
+	gr.gr_type = GRType::Ignore;
 
 	if (scancode == SDL_SCANCODE_RIGHT)
 	{
@@ -161,7 +161,7 @@ GameReaction SCN_Level::proc_keyboard_keydown(AppState* as, SDL_Scancode scancod
 	if (check_for_win())
 	{
 		// Победили, отправляем на сцену поздравления
-		gr.gr_type = GRType::GR_CHG_SCENE;
+		gr.gr_type = GRType::ChgScene;
 		gr.adv_inf = "congrats";
 	}
 
@@ -213,7 +213,7 @@ bool SCN_Level::check_collisions_boxes(SoundMgr* snd_mgr, GameObject game_o, flo
 			}
 
 			// Ящик сдвинули, проигрываем звук
-			snd_mgr->play_sound(SndType::t_move_box);
+			snd_mgr->play_sound(SndType::MoveBox);
 
 			// Ящик сдвинут, проверяем его нахождение
 			// в нужном месте

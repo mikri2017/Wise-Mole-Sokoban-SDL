@@ -4,7 +4,7 @@
 
 enum class SndType
 {
-    t_move_box
+    MoveBox
 };
 
 class Mix_Chunk;
