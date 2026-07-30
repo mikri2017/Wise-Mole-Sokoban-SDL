@@ -1,17 +1,22 @@
 #pragma once
 
 #include "Scene.h"
-#include "../ui/FontMgr_old.h"
+#include "../ui/Font.h"
+#include "../ui/Caption.h"
 #include "../ui/Button.h"
 
 class SCN_Congrats : public Scene
 {
 private:
-	SDL_FPoint menuPosition;
+	SDL_FPoint menu_pos;
 	float btn_w, btn_h;
-	Button btn_to_main;
+	Button* btn_to_main;
+	Font* font;
+	Caption* cap_congrats{ nullptr };
 public:
 	SCN_Congrats();
+
+	~SCN_Congrats();
 
 	void reset();
 

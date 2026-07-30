@@ -2,13 +2,18 @@
 
 #include "Scene.h"
 #include "../ui/Button.h"
+#include "../ui/Font.h"
+#include "../ui/Caption.h"
 
 class SCN_MainMenu : public Scene
 {
 private:
-    SDL_FPoint menuPosition;
+    SDL_FPoint menu_pos;
     float btn_w, btn_h;
-    Button btn_new_game, btn_exit;
+    Button* btn_new_game, * btn_exit;
+
+    Font* font;
+    Caption* capt{ nullptr };
 public:
     SCN_MainMenu();
 

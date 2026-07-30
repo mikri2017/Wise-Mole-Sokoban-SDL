@@ -3,28 +3,28 @@
 
 SCN_MainMenu::SCN_MainMenu()
 {
+    font = new Font("assets/fonts/XoloniumBold.ttf", 24);
     reset();
 }
 
 SCN_MainMenu::~SCN_MainMenu()
 {
+    if (capt)
+        delete capt;
+
+    if (btn_new_game)
+        delete btn_new_game;
+
+    if (btn_exit)
+        delete btn_exit;
 }
 
 void SCN_MainMenu::reset()
 {
-    menuPosition.x = 455;
-    menuPosition.y = 384;
+    menu_pos.x = 455;
+    menu_pos.y = 384;
     btn_w = 400;
     btn_h = 70;
-
-    // Задаем параметры кнопок
-    btn_new_game.set_caption("NEW GAME");
-    btn_new_game.set_position(menuPosition.x, menuPosition.y);
-    btn_new_game.set_size(btn_w, btn_h);
-
-    btn_exit.set_caption("EXIT");
-    btn_exit.set_position(menuPosition.x, menuPosition.y + btn_h + 30);
-    btn_exit.set_size(btn_w, btn_h);
 }
 
 GameReaction SCN_MainMenu::app_iter(AppState *as)
@@ -32,12 +32,44 @@ GameReaction SCN_MainMenu::app_iter(AppState *as)
     GameReaction gr;
     gr.gr_type = GRType::Ignore;
 
+    if (!capt)
+    {
+        capt = new Caption(as->r);
+
+        capt->set_font(font);
+        capt->set_font_color(255, 0, 0);
+
+        capt->set_caption("Wise Mole Sokoban");
+
+        capt->set_position(100.0f, 100.0f);
+    }
+
+    if (!btn_new_game)
+    {
+        btn_new_game = new Button();
+        btn_new_game->init(as->r);
+        btn_new_game->set_caption("Новая игра");
+        btn_new_game->set_position(menu_pos.x, menu_pos.y);
+        btn_new_game->set_size(btn_w, btn_h);
+    }
+
+    if (!btn_exit)
+    {
+        btn_exit = new Button();
+        btn_exit->init(as->r);
+        btn_exit->set_caption("Выход");
+        btn_exit->set_position(menu_pos.x, menu_pos.y + btn_h + 30);
+        btn_exit->set_size(btn_w, btn_h);
+    }
+
     SDL_SetRenderDrawColor(as->r, 255, 255, 255, SDL_ALPHA_OPAQUE);
     SDL_RenderClear(as->r);
     SDL_SetRenderDrawColor(as->r, 255, 0, 0, SDL_ALPHA_OPAQUE);
 
-    btn_new_game.render(as->r);
-    btn_exit.render(as->r);
+    capt->render();
+
+    btn_new_game->render(as->r);
+    btn_exit->render(as->r);
 
     SDL_RenderPresent(as->r);
 
@@ -63,14 +95,14 @@ GameReaction SCN_MainMenu::proc_mouse_button_event(AppState* as, SDL_MouseButton
         // Один клик
         if(m_btn_event.clicks == 1)
         {
-            if(btn_exit.check_hover(m_btn_event.x, m_btn_event.y))
+            if(btn_exit->check_hover(m_btn_event.x, m_btn_event.y))
             {
                 // Выходим из игры
                 gr.gr_type = GRType::AppExit;
                 return gr;
             }
 
-            if(btn_new_game.check_hover(m_btn_event.x, m_btn_event.y))
+            if(btn_new_game->check_hover(m_btn_event.x, m_btn_event.y))
             {
                 gr.gr_type = GRType::ChgSceneWReset;
                 gr.adv_inf = "game_level";

@@ -5,17 +5,18 @@ SCN_Congrats::SCN_Congrats()
 	reset();
 }
 
+SCN_Congrats::~SCN_Congrats()
+{
+    if (btn_to_main)
+        delete btn_to_main;
+}
+
 void SCN_Congrats::reset()
 {
-    menuPosition.x = 455;
-    menuPosition.y = 512;
+    menu_pos.x = 455;
+    menu_pos.y = 512;
     btn_w = 400;
     btn_h = 70;
-
-    // Задаем параметры кнопок
-    btn_to_main.set_caption("TO MAIN MENU");
-    btn_to_main.set_position(menuPosition.x, menuPosition.y);
-    btn_to_main.set_size(btn_w, btn_h);
 }
 
 GameReaction SCN_Congrats::app_iter(AppState* as)
@@ -23,11 +24,36 @@ GameReaction SCN_Congrats::app_iter(AppState* as)
 	GameReaction gr;
 	gr.gr_type = GRType::Ignore;
 
+    if (!cap_congrats)
+    {
+        cap_congrats = new Caption(as->r);
+        if (!font)
+            font = new Font("assets/fonts/XoloniumBold.ttf", 24);
+
+        cap_congrats->set_font(font);
+        cap_congrats->set_font_color(255, 0, 0);
+
+        cap_congrats->set_caption("Поздравляем! Вы прошли уровень!");
+
+        cap_congrats->set_position(100.0f, 100.0f);
+    }
+
+    if (!btn_to_main)
+    {
+        btn_to_main = new Button();
+        btn_to_main->init(as->r);
+        btn_to_main->set_caption("В главное меню");
+        btn_to_main->set_position(menu_pos.x, menu_pos.y);
+        btn_to_main->set_size(btn_w, btn_h);
+    }
+
 	SDL_SetRenderDrawColor(as->r, 255, 255, 255, SDL_ALPHA_OPAQUE);
 	SDL_RenderClear(as->r);
 	SDL_SetRenderDrawColor(as->r, 255, 0, 0, SDL_ALPHA_OPAQUE);
 
-	btn_to_main.render(as->r);
+    cap_congrats->render();
+
+    btn_to_main->render(as->r);
 
 	SDL_RenderPresent(as->r);
 
@@ -55,7 +81,7 @@ GameReaction SCN_Congrats::proc_mouse_button_event(AppState* as, SDL_MouseButton
         // Один клик
         if (m_btn_event.clicks == 1)
         {
-            if (btn_to_main.check_hover(m_btn_event.x, m_btn_event.y))
+            if (btn_to_main->check_hover(m_btn_event.x, m_btn_event.y))
             {
                 gr.gr_type = GRType::ChgSceneWReset;
                 gr.adv_inf = "main_menu";

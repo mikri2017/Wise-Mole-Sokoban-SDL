@@ -2,22 +2,19 @@
 
 #include <iostream>
 #include <SDL3/SDL.h>
-
-class FontMgr_old;
+#include "../ui/Font.h"
+#include "../ui/Caption.h"
 
 class Button
 {
 private:
-    std::string s_caption;
-    SDL_FRect btn;
-    FontMgr_old *font_caption;
-    SDL_Color font_color;
-    int font_margin_left_right;
-    int font_margin_up_dowm;
+    SDL_FRect btn{ 0.0f, 0.0f, 0.0f, 0.0f };
+    Font* font{ nullptr };
+    Caption* cap_btn{ nullptr };
 public:
-    Button();
-
     ~Button();
+
+    void init(SDL_Renderer* r);
 
     void set_caption(std::string caption);
 
