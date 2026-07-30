@@ -3,14 +3,14 @@
 #include <iostream>
 #include <SDL3/SDL.h>
 
-class FontMgr;
+class FontMgr_old;
 
 class Button
 {
 private:
     std::string s_caption;
     SDL_FRect btn;
-    FontMgr *font_caption;
+    FontMgr_old *font_caption;
     SDL_Color font_color;
     int font_margin_left_right;
     int font_margin_up_dowm;

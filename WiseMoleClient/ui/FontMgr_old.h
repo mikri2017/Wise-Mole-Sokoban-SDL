@@ -9,7 +9,7 @@ enum class FontAlign {
     Centre
 };
 
-class FontMgr
+class FontMgr_old
 {
 private:
     TTF_Font* font{ nullptr };
@@ -21,9 +21,9 @@ private:
     float scn_indent;
     float x_start_left{ 0 }, x_start_right{ 0 };
 public:
-    FontMgr();
+    FontMgr_old();
 
-    ~FontMgr();
+    ~FontMgr_old();
 
     void set_letter_size_in_px(float l_size_px);
 

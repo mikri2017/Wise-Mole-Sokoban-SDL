@@ -1,12 +1,7 @@
-#include "FontMgr.h"
+#include "FontMgr_old.h"
 
-FontMgr::FontMgr()
+FontMgr_old::FontMgr_old()
 {
-    if (!TTF_Init()) {
-        SDL_Log("Couldn't initialize TTF: %s", SDL_GetError());
-        return;
-    }
-
     scn_indent = 10;
     font_size = 10;
     font_name = "assets/fonts/XoloniumBold.ttf";
@@ -19,13 +14,12 @@ FontMgr::FontMgr()
     x_start_right = 1366;
 }
 
-FontMgr::~FontMgr()
+FontMgr_old::~FontMgr_old()
 {
     TTF_CloseFont(font);
-    TTF_Quit();
 }
 
-void FontMgr::set_letter_size_in_px(float l_size_px)
+void FontMgr_old::set_letter_size_in_px(float l_size_px)
 {
     if (l_size_px < 0)
         l_size_px = 0;
@@ -33,31 +27,31 @@ void FontMgr::set_letter_size_in_px(float l_size_px)
     letter_size_px = l_size_px;
 }
 
-void FontMgr::set_font(std::string f_name)
+void FontMgr_old::set_font(std::string f_name)
 {
     font_name = f_name;
     reload_font();
 }
 
-void FontMgr::set_font_color(const SDL_Color &f_color)
+void FontMgr_old::set_font_color(const SDL_Color &f_color)
 {
     font_color = f_color;
     reload_font();
 }
 
-void FontMgr::set_text_xstart_from(float x_left, float x_right)
+void FontMgr_old::set_text_xstart_from(float x_left, float x_right)
 {
     x_start_left = x_left;
     x_start_right = x_right;
 }
 
-void FontMgr::set_font_size(float f_size)
+void FontMgr_old::set_font_size(float f_size)
 {
     font_size = f_size;
     reload_font();
 }
 
-void FontMgr::render(SDL_Renderer *r, std::string text, float y, float h, FontAlign f_align)
+void FontMgr_old::render(SDL_Renderer *r, std::string text, float y, float h, FontAlign f_align)
 {
     float x;
     float text_width_px = letter_size_px * static_cast<float>(text.length());
@@ -84,7 +78,7 @@ void FontMgr::render(SDL_Renderer *r, std::string text, float y, float h, FontAl
     SDL_DestroySurface(surface);
 }
 
-void FontMgr::reload_font()
+void FontMgr_old::reload_font()
 {
     TTF_CloseFont(font);
     font = TTF_OpenFont(font_name.c_str(), font_size);

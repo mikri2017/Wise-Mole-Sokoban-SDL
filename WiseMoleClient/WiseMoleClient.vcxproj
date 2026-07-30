@@ -161,7 +161,8 @@
     <ClCompile Include="SDLGame.cpp" />
     <ClCompile Include="SoundMgr.cpp" />
     <ClCompile Include="ui\Button.cpp" />
-    <ClCompile Include="ui\FontMgr.cpp" />
+    <ClCompile Include="ui\Caption.cpp" />
+    <ClCompile Include="ui\FontMgr_old.cpp" />
     <ClCompile Include="VideoModeMgr.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -182,7 +183,8 @@
     <ClInclude Include="SDLGame.h" />
     <ClInclude Include="SoundMgr.h" />
     <ClInclude Include="ui\Button.h" />
-    <ClInclude Include="ui\FontMgr.h" />
+    <ClInclude Include="ui\Caption.h" />
+    <ClInclude Include="ui\FontMgr_old.h" />
     <ClInclude Include="VideoModeMgr.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

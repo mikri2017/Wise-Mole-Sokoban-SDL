@@ -20,6 +20,12 @@ SDL_AppResult SDL_AppInit(void** appstate, int argc, char* argv[])
         return SDL_APP_FAILURE;
     }
 
+    // Инициализация шрифтов и текста
+    if (!TTF_Init()) {
+        SDL_Log("Couldn't initialize TTF: %s", SDL_GetError());
+        return SDL_APP_FAILURE;
+    }
+
     AppState* as = new AppState();
     if (!SDL_CreateWindowAndRenderer(app_title.c_str(), as->win_w, as->win_h, 0, &(as->win), &(as->r))) {
         SDL_Log("Couldn't create window/renderer: %s", SDL_GetError());
@@ -65,6 +71,9 @@ void SDL_AppQuit(void* appstate, SDL_AppResult result)
         delete as->snd_mgr;
         delete as;
     }
+
+    // Убираем работу со шрифтами и текстом
+    TTF_Quit();
 
     // Убираем объект игры
     delete game;

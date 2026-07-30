@@ -78,7 +78,7 @@
     <ClCompile Include="ui\Button.cpp">
       <Filter>Исходные файлы\ui</Filter>
     </ClCompile>
-    <ClCompile Include="ui\FontMgr.cpp">
+    <ClCompile Include="ui\FontMgr_old.cpp">
       <Filter>Исходные файлы\ui</Filter>
     </ClCompile>
     <ClCompile Include="scenes\SCN_Congrats.cpp">
@@ -86,6 +86,9 @@
     </ClCompile>
     <ClCompile Include="scenes\SCN_PauseMenu.cpp">
       <Filter>Исходные файлы\scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\Caption.cpp">
+      <Filter>Исходные файлы\ui</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -134,7 +137,7 @@
     <ClInclude Include="scenes\SCN_MainMenu.h">
       <Filter>Файлы заголовков\scenes</Filter>
     </ClInclude>
-    <ClInclude Include="ui\FontMgr.h">
+    <ClInclude Include="ui\FontMgr_old.h">
       <Filter>Файлы заголовков\ui</Filter>
     </ClInclude>
     <ClInclude Include="ui\Button.h">
@@ -145,6 +148,9 @@
     </ClInclude>
     <ClInclude Include="scenes\SCN_PauseMenu.h">
       <Filter>Файлы заголовков\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="ui\Caption.h">
+      <Filter>Файлы заголовков\ui</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

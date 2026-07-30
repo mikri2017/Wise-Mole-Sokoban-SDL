@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Scene.h"
-#include "../ui/FontMgr.h"
+#include "../ui/FontMgr_old.h"
 #include "../ui/Button.h"
 
 class SCN_Congrats : public Scene

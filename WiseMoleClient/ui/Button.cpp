@@ -1,5 +1,5 @@
 #include "Button.h"
-#include "FontMgr.h"
+#include "FontMgr_old.h"
 
 Button::Button()
 {
@@ -14,7 +14,7 @@ Button::Button()
     font_margin_left_right = 10;
     font_margin_up_dowm = 5;
 
-    font_caption = new FontMgr();
+    font_caption = new FontMgr_old();
     font_caption->set_font("assets/fonts/XoloniumBold.ttf");
     font_caption->set_font_size(48);
     font_caption->set_font_color(font_color);
