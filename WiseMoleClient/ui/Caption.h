@@ -9,7 +9,6 @@ class Caption
 {
 private:
     SDL_FRect area{ 0, 0, 0, 0 };
-
     TTF_TextEngine* t_eng{ nullptr };
     TTF_Text* txt{ nullptr };
     Font* font{ nullptr };
@@ -17,9 +16,11 @@ private:
 
     std::string text{ "" };
 
-    void update_txt();
+    bool need_update{ true };
+
+    void update_txt(SDL_Renderer *r);
 public:
-    Caption(SDL_Renderer* r);
+    Caption(Font* new_font);
 
     ~Caption();
 
@@ -37,5 +38,5 @@ public:
 
     void set_height(float h);
 
-    void render();
+    void render(SDL_Renderer *r);
 };

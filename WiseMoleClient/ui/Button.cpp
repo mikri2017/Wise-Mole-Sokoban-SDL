@@ -4,31 +4,34 @@ Button::~Button()
 {
     if (cap_btn)
         delete cap_btn;
-
-    if (font)
-        delete font;
 }
 
-void Button::init(SDL_Renderer* r)
+void Button::set_font(Font *new_font)
 {
-    // Задаем параметры текста
-    font = new Font("assets/fonts/XoloniumBold.ttf", 48.0f);
+    if (!cap_btn)
+        cap_btn = new Caption(new_font);
+    else cap_btn->set_font(new_font);
+}
 
-    cap_btn = new Caption(r);
-    cap_btn->set_font(font);
-    cap_btn->set_font_color(255, 0, 0);
+void Button::set_font_color(int r, int g, int b, int a)
+{
+    if (cap_btn)
+        cap_btn->set_font_color(r, g, b, a);
 }
 
 void Button::set_caption(std::string caption)
 {
-    cap_btn->set_caption(caption);
+    if (cap_btn)
+        cap_btn->set_caption(caption);
 }
 
 void Button::set_position(float x, float y)
 {
     btn.x = x;
     btn.y = y;
-    cap_btn->set_position(btn.x + 10, btn.y + 5);
+
+    if (cap_btn)
+        cap_btn->set_position(btn.x + 10, btn.y + 5);
 }
 
 void Button::set_size(float w, float h)
@@ -51,5 +54,7 @@ bool Button::check_hover(float x, float y) const
 void Button::render(SDL_Renderer *r)
 {
     SDL_RenderRect(r, &btn);
-    cap_btn->render();
+
+    if (cap_btn)
+        cap_btn->render(r);
 }

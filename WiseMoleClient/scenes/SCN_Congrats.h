@@ -2,8 +2,8 @@
 
 #include "Scene.h"
 #include "../ui/Font.h"
-#include "../ui/Caption.h"
 #include "../ui/Button.h"
+#include "../ui/Caption.h"
 
 class SCN_Congrats : public Scene
 {

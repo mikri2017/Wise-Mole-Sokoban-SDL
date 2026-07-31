@@ -2,6 +2,18 @@
 
 SCN_PauseMenu::SCN_PauseMenu()
 {
+    font = new Font("assets/fonts/XoloniumBold.ttf", 24);
+
+    btn_continue = new Button();
+    btn_continue->set_font(font);
+    btn_continue->set_font_color(255, 0, 0);
+    btn_continue->set_caption("Продолжить");
+
+    btn_to_main = new Button();
+    btn_to_main->set_font(font);
+    btn_to_main->set_font_color(255, 0, 0);
+    btn_to_main->set_caption("В главное меню");
+
     reset();
 }
 
@@ -12,6 +24,9 @@ SCN_PauseMenu::~SCN_PauseMenu()
 
     if (btn_to_main)
         delete btn_to_main;
+
+    // if (font)
+    //     delete font;
 }
 
 void SCN_PauseMenu::reset()
@@ -20,30 +35,18 @@ void SCN_PauseMenu::reset()
     menu_pos.y = 384;
     btn_w = 400;
     btn_h = 70;
+
+    btn_continue->set_position(menu_pos.x, menu_pos.y);
+    btn_continue->set_size(btn_w, btn_h);
+
+    btn_to_main->set_position(menu_pos.x, menu_pos.y + btn_h + 30);
+    btn_to_main->set_size(btn_w, btn_h);
 }
 
 GameReaction SCN_PauseMenu::app_iter(AppState* as)
 {
     GameReaction gr;
     gr.gr_type = GRType::Ignore;
-
-    if (!btn_continue)
-    {
-        btn_continue = new Button();
-        btn_continue->init(as->r);
-        btn_continue->set_caption("Продолжить");
-        btn_continue->set_position(menu_pos.x, menu_pos.y);
-        btn_continue->set_size(btn_w, btn_h);
-    }
-
-    if (!btn_to_main)
-    {
-        btn_to_main = new Button();
-        btn_to_main->init(as->r);
-        btn_to_main->set_caption("В главное меню");
-        btn_to_main->set_position(menu_pos.x, menu_pos.y + btn_h + 30);
-        btn_to_main->set_size(btn_w, btn_h);
-    }
 
     SDL_SetRenderDrawColor(as->r, 255, 255, 255, SDL_ALPHA_OPAQUE);
     SDL_RenderClear(as->r);

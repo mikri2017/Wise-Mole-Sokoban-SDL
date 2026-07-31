@@ -8,6 +8,8 @@ class SCN_PauseMenu : public Scene
 private:
     SDL_FPoint menu_pos;
     float btn_w, btn_h;
+
+    Font* font;
     Button* btn_continue, * btn_to_main;
 public:
     SCN_PauseMenu();

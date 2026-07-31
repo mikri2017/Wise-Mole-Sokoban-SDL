@@ -1,23 +1,32 @@
 #include "Caption.h"
 
-void Caption::update_txt()
+void Caption::update_txt(SDL_Renderer *r)
 {
-    // Пересоздать текст с переназначением цвета
+    if (!t_eng)
+    {
+        // Первый рендер
+        t_eng = TTF_CreateRendererTextEngine(r);
+    }
+
     if (txt)
         TTF_DestroyText(txt);
 
     txt = font->gen_text(t_eng, text);
+
     TTF_SetTextColor(txt, font_c.r, font_c.g, font_c.b, font_c.a);
+
+    need_update = false;
 }
 
-Caption::Caption(SDL_Renderer* r)
+Caption::Caption(Font* new_font)
 {
-    if (r)
-        t_eng = TTF_CreateRendererTextEngine(r);
+    set_font(new_font);
 }
 
 Caption::~Caption()
 {
+    // Font не трогаем, потому что внешний
+
     if (txt)
         TTF_DestroyText(txt);
 
@@ -33,13 +42,16 @@ std::string Caption::get_caption()
 void Caption::set_caption(std::string new_text)
 {
     text = new_text;
-    update_txt();
+    need_update = true;
 }
 
 void Caption::set_font(Font* new_font)
 {
     if (new_font)
+    {
         font = new_font;
+        need_update = true;
+    }
 }
 
 void Caption::set_font_color(int r, int g, int b, int a)
@@ -60,7 +72,7 @@ void Caption::set_font_color(int r, int g, int b, int a)
         a = SDL_ALPHA_OPAQUE;
     else font_c.a = a;
 
-    update_txt();
+    need_update = true;
 }
 
 void Caption::set_position(float x, float y)
@@ -88,8 +100,11 @@ void Caption::set_height(float h)
     else area.h = h;
 }
 
-void Caption::render()
+void Caption::render(SDL_Renderer *r)
 {
+    if (need_update)
+        update_txt(r);
+
     if (!TTF_DrawRendererText(txt, area.x, area.y))
         SDL_Log("Error with drawing text %s", SDL_GetError());
 }

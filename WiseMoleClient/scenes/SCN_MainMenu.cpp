@@ -4,6 +4,22 @@
 SCN_MainMenu::SCN_MainMenu()
 {
     font = new Font("assets/fonts/XoloniumBold.ttf", 24);
+
+    capt = new Caption(font);
+    capt->set_font_color(255, 0, 0);
+    capt->set_caption("Wise Mole Sokoban");
+    capt->set_position(100.0f, 100.0f);
+
+    btn_new_game = new Button();
+    btn_new_game->set_font(font);
+    btn_new_game->set_font_color(255, 0, 0);
+    btn_new_game->set_caption("Новая игра");
+
+    btn_exit = new Button();
+    btn_exit->set_font(font);
+    btn_exit->set_font_color(255, 0, 0);
+    btn_exit->set_caption("Выход");
+
     reset();
 }
 
@@ -17,6 +33,9 @@ SCN_MainMenu::~SCN_MainMenu()
 
     if (btn_exit)
         delete btn_exit;
+
+    if (font)
+        delete font;
 }
 
 void SCN_MainMenu::reset()
@@ -25,6 +44,12 @@ void SCN_MainMenu::reset()
     menu_pos.y = 384;
     btn_w = 400;
     btn_h = 70;
+
+    btn_new_game->set_position(menu_pos.x, menu_pos.y);
+    btn_new_game->set_size(btn_w, btn_h);
+
+    btn_exit->set_position(menu_pos.x, menu_pos.y + btn_h + 30);
+    btn_exit->set_size(btn_w, btn_h);
 }
 
 GameReaction SCN_MainMenu::app_iter(AppState *as)
@@ -32,41 +57,11 @@ GameReaction SCN_MainMenu::app_iter(AppState *as)
     GameReaction gr;
     gr.gr_type = GRType::Ignore;
 
-    if (!capt)
-    {
-        capt = new Caption(as->r);
-
-        capt->set_font(font);
-        capt->set_font_color(255, 0, 0);
-
-        capt->set_caption("Wise Mole Sokoban");
-
-        capt->set_position(100.0f, 100.0f);
-    }
-
-    if (!btn_new_game)
-    {
-        btn_new_game = new Button();
-        btn_new_game->init(as->r);
-        btn_new_game->set_caption("Новая игра");
-        btn_new_game->set_position(menu_pos.x, menu_pos.y);
-        btn_new_game->set_size(btn_w, btn_h);
-    }
-
-    if (!btn_exit)
-    {
-        btn_exit = new Button();
-        btn_exit->init(as->r);
-        btn_exit->set_caption("Выход");
-        btn_exit->set_position(menu_pos.x, menu_pos.y + btn_h + 30);
-        btn_exit->set_size(btn_w, btn_h);
-    }
-
     SDL_SetRenderDrawColor(as->r, 255, 255, 255, SDL_ALPHA_OPAQUE);
     SDL_RenderClear(as->r);
     SDL_SetRenderDrawColor(as->r, 255, 0, 0, SDL_ALPHA_OPAQUE);
 
-    capt->render();
+    capt->render(as->r);
 
     btn_new_game->render(as->r);
     btn_exit->render(as->r);
