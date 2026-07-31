@@ -49,3 +49,7 @@
 * [mariadb-server](https://mariadb.org/download/?t=repo-config&d=Debian+12+%22Bookworm%22&v=11.4&r_m=truenetwork)
 ### Клиент
 * [SDL3](https://github.com/libsdl-org/SDL/releases)
+* [SDL3_image](https://github.com/libsdl-org/SDL_image/releases)
+* [SDL3_ttf](https://github.com/libsdl-org/SDL_ttf/releases)
+* [SDL3_mixer](https://github.com/libsdl-org/SDL_mixer/releases)
+* [SDL3_net](https://github.com/libsdl-org/SDL_net/releases)
