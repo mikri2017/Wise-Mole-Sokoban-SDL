@@ -11,8 +11,9 @@ Font::Font(std::string font_path, float font_size)
 
 Font::~Font()
 {
-    // if (font)
-    //     TTF_CloseFont(font);
+    // Под Linux (g++), вызывает ошибку сегментирования
+    if (font)
+        TTF_CloseFont(font);
 }
 
 std::string Font::get_name()
