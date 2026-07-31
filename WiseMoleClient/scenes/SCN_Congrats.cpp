@@ -22,8 +22,8 @@ SCN_Congrats::~SCN_Congrats()
     if (btn_to_main)
         delete btn_to_main;
 
-    // if (font)
-    //     delete font;
+    if (font)
+        delete font;
 }
 
 void SCN_Congrats::reset()
