@@ -1,4 +1,5 @@
 #include "SceneMgr.h"
+#include <iterator>
 #include <algorithm>
 
 SceneMgr::SceneMgr()
@@ -42,7 +43,7 @@ SDL_AppResult SceneMgr::app_iter(AppState* as)
     GameReaction gr;
 
     // Очередной цикл отработки программы
-    if (scenes.size() > scene_id)
+    if (std::ssize(scenes) > scene_id)
     {
         gr = scenes[scene_id]->app_iter(as);
         return proc_game_reaction(gr);
@@ -56,7 +57,7 @@ SDL_AppResult SceneMgr::app_iter(AppState* as)
 
 SDL_AppResult SceneMgr::proc_mouse_motion(AppState* as, float x, float y)
 {
-    if (scenes.size() > scene_id)
+    if (std::ssize(scenes) > scene_id)
     {
         GameReaction gr = scenes[scene_id]->proc_mouse_motion(as, x, y);
         return proc_game_reaction(gr);
@@ -70,7 +71,7 @@ SDL_AppResult SceneMgr::proc_mouse_motion(AppState* as, float x, float y)
 
 SDL_AppResult SceneMgr::proc_mouse_button_event(AppState* as, SDL_MouseButtonEvent m_btn_event)
 {
-    if (scenes.size() > scene_id)
+    if (std::ssize(scenes) > scene_id)
     {
         GameReaction gr = scenes[scene_id]->proc_mouse_button_event(as, m_btn_event);
         return proc_game_reaction(gr);
@@ -111,7 +112,7 @@ SDL_AppResult SceneMgr::proc_keyboard_keydown(AppState* as, SDL_Scancode scancod
         }
     }
 
-    if (scenes.size() > scene_id)
+    if (std::ssize(scenes) > scene_id)
     {
         GameReaction gr = scenes[scene_id]->proc_keyboard_keydown(as, scancode);
         return proc_game_reaction(gr);
