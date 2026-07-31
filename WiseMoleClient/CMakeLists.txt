@@ -30,7 +30,13 @@ add_executable(WiseMoleClient
     game_objects/WallBlock.cpp
     scenes/Scene.cpp
     scenes/SceneMgr.cpp
+    scenes/SCN_Congrats.cpp
     scenes/SCN_Level.cpp
+    scenes/SCN_MainMenu.cpp
+    scenes/SCN_PauseMenu.cpp
+    ui/Button.cpp
+    ui/Caption.cpp
+    ui/Font.cpp
 )
 
 target_link_libraries(WiseMoleClient PRIVATE SDL3::SDL3)
