@@ -8,34 +8,34 @@
 class Caption
 {
 private:
-	SDL_FRect area{ 0, 0, 0, 0 };
+    SDL_FRect area{ 0, 0, 0, 0 };
 
-	TTF_TextEngine* t_eng{ nullptr };
-	TTF_Text* txt{ nullptr };
-	Font* font{ nullptr };
-	SDL_Color font_c{ 0, 0, 0, SDL_ALPHA_OPAQUE };
+    TTF_TextEngine* t_eng{ nullptr };
+    TTF_Text* txt{ nullptr };
+    Font* font{ nullptr };
+    SDL_Color font_c{ 0, 0, 0, SDL_ALPHA_OPAQUE };
 
-	std::string text{ "" };
+    std::string text{ "" };
 
-	void update_txt();
+    void update_txt();
 public:
-	Caption(SDL_Renderer* r);
+    Caption(SDL_Renderer* r);
 
-	~Caption();
+    ~Caption();
 
-	std::string get_caption();
+    std::string get_caption();
 
-	void set_caption(std::string new_text);
+    void set_caption(std::string new_text);
 
-	void set_font(Font* new_font);
+    void set_font(Font* new_font);
 
-	void set_font_color(int r, int g, int b, int a = SDL_ALPHA_OPAQUE);
+    void set_font_color(int r, int g, int b, int a = SDL_ALPHA_OPAQUE);
 
-	void set_position(float x, float y);
+    void set_position(float x, float y);
 
-	void set_width(float w);
+    void set_width(float w);
 
-	void set_height(float h);
+    void set_height(float h);
 
-	void render();
+    void render();
 };

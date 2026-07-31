@@ -6,41 +6,41 @@
 class GameObject
 {
 private:
-	int hp{ 0 }; // Очки здоровья
-	int hp_max{ 0 }; // Максимальное здоровье
+    int hp{ 0 }; // Очки здоровья
+    int hp_max{ 0 }; // Максимальное здоровье
 
-	// Расположение по осям X и Y с размерами
-	SDL_FRect fr_area{ 0.0f, 0.0f, 0.0f, 0.0f };
+    // Расположение по осям X и Y с размерами
+    SDL_FRect fr_area{ 0.0f, 0.0f, 0.0f, 0.0f };
 protected:
-	CollisionCaps col_c{ CollisionCaps() };
+    CollisionCaps col_c{ CollisionCaps() };
 public:
-	int get_hp();
+    int get_hp();
 
-	void set_max_hp(int hp_max);
+    void set_max_hp(int hp_max);
 
-	void add_hp(int hp);
+    void add_hp(int hp);
 
-	bool add_damage(int dmg);
+    bool add_damage(int dmg);
 
-	virtual void render() {};
+    virtual void render() {};
 
-	SDL_FPoint get_position();
+    SDL_FPoint get_position();
 
-	float get_width();
+    float get_width();
 
-	float get_height();
+    float get_height();
 
-	void set_position(float x, float y);
+    void set_position(float x, float y);
 
-	void set_size(float w, float h);
+    void set_size(float w, float h);
 
-	void move(float diff_x, float diff_y);
+    void move(float diff_x, float diff_y);
 
-	bool check_collision(GameObject game_o);
+    bool check_collision(GameObject game_o);
 
-	bool check_collision(CollisionCaps* cc);
+    bool check_collision(CollisionCaps* cc);
 
-	bool check_inside(GameObject* game_o);
+    bool check_inside(GameObject* game_o);
 
-	bool check_inside(CollisionCaps* cc);
+    bool check_inside(CollisionCaps* cc);
 };

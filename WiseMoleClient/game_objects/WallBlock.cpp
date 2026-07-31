@@ -2,42 +2,42 @@
 
 WallBlock::WallBlock()
 {
-	// Назначаем начальные координаты и размеры
-	set_position(0, 0);
-	fr.w = get_width();
-	fr.h = get_height();
+    // Назначаем начальные координаты и размеры
+    set_position(0, 0);
+    fr.w = get_width();
+    fr.h = get_height();
 
-	// И капcулы столкновений
-	col_c.set_area(0, 0, get_width(), get_height());
+    // И капcулы столкновений
+    col_c.set_area(0, 0, get_width(), get_height());
 }
 
 void WallBlock::render(SDL_Renderer* renderer)
 {
-	SDL_SetRenderDrawColor(renderer, 0, 0, 255, SDL_ALPHA_OPAQUE);
-	SDL_RenderFillRect(renderer, &fr);
+    SDL_SetRenderDrawColor(renderer, 0, 0, 255, SDL_ALPHA_OPAQUE);
+    SDL_RenderFillRect(renderer, &fr);
 }
 
 void WallBlock::set_position(float x, float y)
 {
-	GameObject::set_position(x, y);
-	SDL_FPoint p = get_position();
-	fr.x = p.x;
-	fr.y = p.y;
+    GameObject::set_position(x, y);
+    SDL_FPoint p = get_position();
+    fr.x = p.x;
+    fr.y = p.y;
 
-	col_c.set_area(p.x, p.y, get_width(), get_height());
+    col_c.set_area(p.x, p.y, get_width(), get_height());
 }
 
 void WallBlock::set_size(float w, float h)
 {
-	GameObject::set_size(w, h);
-	fr.w = get_width();
-	fr.h = get_height();
+    GameObject::set_size(w, h);
+    fr.w = get_width();
+    fr.h = get_height();
 
-	col_c.set_area(fr.x, fr.y, get_width(), get_width());
+    col_c.set_area(fr.x, fr.y, get_width(), get_width());
 }
 
 void WallBlock::move(float diff_x, float diff_y)
 {
-	// Кусок стены не перемещается
-	return;
+    // Кусок стены не перемещается
+    return;
 }

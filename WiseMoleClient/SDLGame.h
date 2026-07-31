@@ -9,16 +9,16 @@
 class SDLGame
 {
 private:
-	SceneMgr* scn_mgr{ nullptr };
-	VideoModeMgr vm_mgr;
+    SceneMgr* scn_mgr{ nullptr };
+    VideoModeMgr vm_mgr;
 
-	bool fullscren {true};
+    bool fullscren {true};
 public:
-	~SDLGame();
+    ~SDLGame();
 
-	void init(AppState* as);
+    void init(AppState* as);
 
-	SDL_AppResult proc_event(AppState* as, SDL_Event* event);
+    SDL_AppResult proc_event(AppState* as, SDL_Event* event);
 
-	SDL_AppResult app_iter(AppState* as);
+    SDL_AppResult app_iter(AppState* as);
 };
