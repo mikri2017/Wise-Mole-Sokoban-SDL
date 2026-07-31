@@ -14,6 +14,8 @@ private:
 protected:
     CollisionCaps col_c{ CollisionCaps() };
 public:
+    virtual ~GameObject() = default;
+
     int get_hp();
 
     void set_max_hp(int hp_max);
@@ -22,7 +24,7 @@ public:
 
     bool add_damage(int dmg);
 
-    virtual void render() {};
+    virtual void render(SDL_Renderer* r) = 0;
 
     SDL_FPoint get_position();
 
@@ -36,7 +38,7 @@ public:
 
     void move(float diff_x, float diff_y);
 
-    bool check_collision(GameObject game_o);
+    bool check_collision(GameObject* game_o);
 
     bool check_collision(CollisionCaps* cc);
 

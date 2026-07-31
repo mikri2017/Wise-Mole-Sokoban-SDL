@@ -8,8 +8,10 @@
 class Scene
 {
 private:
-    std::string name;
+    std::string name{ "" };
 public:
+    virtual ~Scene() = default;
+
     std::string get_name();
 
     bool set_name(std::string s_name);

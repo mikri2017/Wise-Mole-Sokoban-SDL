@@ -84,9 +84,9 @@ void GameObject::move(float diff_x, float diff_y)
         fr_area.y = 0;
 }
 
-bool GameObject::check_collision(GameObject game_o)
+bool GameObject::check_collision(GameObject* game_o)
 {
-    return game_o.check_collision(&col_c);
+    return game_o->check_collision(&col_c);
 }
 
 bool GameObject::check_collision(CollisionCaps* cc)
