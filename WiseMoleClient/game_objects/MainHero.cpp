@@ -12,10 +12,10 @@ MainHero::MainHero()
     col_c.set_area(0, 0, get_width(), get_height());
 }
 
-void MainHero::render(SDL_Renderer* renderer)
+void MainHero::render(SDL_Renderer* r)
 {
-    SDL_SetRenderDrawColor(renderer, 255, 0, 0, SDL_ALPHA_OPAQUE);
-    SDL_RenderFillRect(renderer, &fr);
+    SDL_SetRenderDrawColor(r, 255, 0, 0, SDL_ALPHA_OPAQUE);
+    SDL_RenderFillRect(r, &fr);
 }
 
 void MainHero::set_position(float x, float y)

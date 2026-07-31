@@ -10,7 +10,7 @@ private:
 public:
     Box();
 
-    void render(SDL_Renderer* renderer);
+    void render(SDL_Renderer* r);
 
     void set_position(float x, float y);
 

@@ -36,9 +36,9 @@ public:
 
     GameReaction proc_keyboard_keydown(AppState* as, SDL_Scancode scancode);
 
-    bool check_collisions_immv(GameObject game_o);
+    bool check_collisions_immv(GameObject* game_o);
 
-    bool check_collisions_boxes(SoundMgr* snd_mgr, GameObject game_o, float diff_x, float diff_y);
+    bool check_collisions_boxes(SoundMgr* snd_mgr, GameObject* game_o, float diff_x, float diff_y);
 
     bool check_for_win();
 };

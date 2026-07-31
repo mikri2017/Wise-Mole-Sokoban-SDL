@@ -11,16 +11,16 @@ Box::Box()
     col_c.set_area(0, 0, get_width(), get_width());
 }
 
-void Box::render(SDL_Renderer * renderer)
+void Box::render(SDL_Renderer * r)
 {
     if (in_place)
     {
         // Ящик на нужном месте
-        SDL_SetRenderDrawColor(renderer, 0, 150, 0, SDL_ALPHA_OPAQUE);
+        SDL_SetRenderDrawColor(r, 0, 150, 0, SDL_ALPHA_OPAQUE);
     }
-    else SDL_SetRenderDrawColor(renderer, 0, 255, 0, SDL_ALPHA_OPAQUE);
+    else SDL_SetRenderDrawColor(r, 0, 255, 0, SDL_ALPHA_OPAQUE);
 
-    SDL_RenderFillRect(renderer, &fr);
+    SDL_RenderFillRect(r, &fr);
 }
 
 void Box::set_position(float x, float y)

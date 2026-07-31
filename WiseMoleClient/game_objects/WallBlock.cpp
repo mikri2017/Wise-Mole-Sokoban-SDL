@@ -11,10 +11,10 @@ WallBlock::WallBlock()
     col_c.set_area(0, 0, get_width(), get_height());
 }
 
-void WallBlock::render(SDL_Renderer* renderer)
+void WallBlock::render(SDL_Renderer* r)
 {
-    SDL_SetRenderDrawColor(renderer, 0, 0, 255, SDL_ALPHA_OPAQUE);
-    SDL_RenderFillRect(renderer, &fr);
+    SDL_SetRenderDrawColor(r, 0, 0, 255, SDL_ALPHA_OPAQUE);
+    SDL_RenderFillRect(r, &fr);
 }
 
 void WallBlock::set_position(float x, float y)

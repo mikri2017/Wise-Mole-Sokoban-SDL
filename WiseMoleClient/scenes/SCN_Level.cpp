@@ -141,63 +141,63 @@ GameReaction SCN_Level::proc_keyboard_keydown(AppState* as, SDL_Scancode scancod
     if (scancode == SDL_SCANCODE_RIGHT)
     {
         hero.move(step, 0);
-        if (check_collisions_immv(hero) ||
-            check_collisions_boxes(as->snd_mgr, hero, step, 0))
+        if (check_collisions_immv(&hero) ||
+            check_collisions_boxes(as->snd_mgr, &hero, step, 0))
             hero.move(-step, 0); // Столкновение, откатываем
     }
 
     if (scancode == SDL_SCANCODE_LEFT)
     {
         hero.move(-step, 0);
-        if (check_collisions_immv(hero) ||
-            check_collisions_boxes(as->snd_mgr, hero, -step, 0))
+        if (check_collisions_immv(&hero) ||
+            check_collisions_boxes(as->snd_mgr, &hero, -step, 0))
             hero.move(step, 0); // Вышли за пределы, откатываем
     }
 
     if (scancode == SDL_SCANCODE_UP)
     {
         hero.move(0, -step);
-        if (check_collisions_immv(hero) ||
-            check_collisions_boxes(as->snd_mgr, hero, 0, -step))
+        if (check_collisions_immv(&hero) ||
+            check_collisions_boxes(as->snd_mgr, &hero, 0, -step))
             hero.move(0, step); // Вышли за пределы, откатываем
     }
 
     if (scancode == SDL_SCANCODE_DOWN)
     {
         hero.move(0, step);
-        if (check_collisions_immv(hero) ||
-            check_collisions_boxes(as->snd_mgr, hero, 0, step))
+        if (check_collisions_immv(&hero) ||
+            check_collisions_boxes(as->snd_mgr, &hero, 0, step))
             hero.move(0, -step); // Вышли за пределы, откатываем
     }
 
     return gr;
 }
 
-bool SCN_Level::check_collisions_immv(GameObject game_o)
+bool SCN_Level::check_collisions_immv(GameObject* game_o)
 {
     // Проверка, что не вышли за пределы поля
-    if (!game_o.check_inside(&loc_area))
+    if (!game_o->check_inside(&loc_area))
         return true; // Вышли за пределы, откатываем
 
     // Провека на столкновения с несдвигаемыми объектами
     for (auto& w_block : w_blocks)
     {
-        if (game_o.check_collision(w_block))
+        if (game_o->check_collision(&w_block))
             return true;
     }
 
     return false;
 }
 
-bool SCN_Level::check_collisions_boxes(SoundMgr* snd_mgr, GameObject game_o, float diff_x, float diff_y)
+bool SCN_Level::check_collisions_boxes(SoundMgr* snd_mgr, GameObject* game_o, float diff_x, float diff_y)
 {
     // Провека на столкновения с ящиками
     for (auto& box : boxes)
     {
-        if (game_o.check_collision(box))
+        if (game_o->check_collision(&box))
         {
             box.move(diff_x, diff_y);
-            if (check_collisions_immv(box))
+            if (check_collisions_immv(&box))
             {
                 box.move(-diff_x, -diff_y);
                 return true;
@@ -209,7 +209,7 @@ bool SCN_Level::check_collisions_boxes(SoundMgr* snd_mgr, GameObject game_o, flo
             {
                 if (&box_c != &box)
                 {
-                    if (box.check_collision(box_c))
+                    if (box.check_collision(&box_c))
                     {
                         box.move(-diff_x, -diff_y);
                         return true;

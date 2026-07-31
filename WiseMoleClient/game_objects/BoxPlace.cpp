@@ -11,10 +11,10 @@ BoxPlace::BoxPlace()
     col_c.set_area(0, 0, 0, 0);
 }
 
-void BoxPlace::render(SDL_Renderer * renderer)
+void BoxPlace::render(SDL_Renderer * r)
 {
-    SDL_SetRenderDrawColor(renderer, 160, 160, 160, SDL_ALPHA_OPAQUE);
-    SDL_RenderFillRect(renderer, &fr);
+    SDL_SetRenderDrawColor(r, 160, 160, 160, SDL_ALPHA_OPAQUE);
+    SDL_RenderFillRect(r, &fr);
 }
 
 void BoxPlace::set_position(float x, float y)
