@@ -72,11 +72,11 @@ void SDL_AppQuit(void* appstate, SDL_AppResult result)
         delete as;
     }
 
-    // Убираем работу со шрифтами и текстом
-    TTF_Quit();
-
     // Убираем объект игры
     delete game;
+
+    // Убираем работу со шрифтами и текстом
+    TTF_Quit();
 
     // SDL освободит окно, рендер для нас
 }
